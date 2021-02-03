@@ -1,6 +1,5 @@
 // Imports
 import { GraphQLObjectType } from 'graphql'
-
 // App Imports
 import * as user from '../../modules/user/mutations'
 import * as product from '../../modules/product/mutations'
@@ -17,6 +16,7 @@ const mutation = new GraphQLObjectType({
     ...product,
     ...crate,
     ...subscription
+    //add delivery and deliveryProduct to list...
   }
 })
 
