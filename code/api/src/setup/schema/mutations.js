@@ -2,6 +2,7 @@
 import { GraphQLObjectType } from 'graphql'
 
 // App Imports
+// will need to expand on this as we add tables
 import * as user from '../../modules/user/mutations'
 import * as product from '../../modules/product/mutations'
 import * as crate from '../../modules/crate/mutations'

@@ -1,5 +1,5 @@
 // Imports
-import axios from 'axios'
+import axios from 'axios' // fetch request for data
 import { query, mutation } from 'gql-query-builder'
 
 // App Imports
@@ -18,9 +18,13 @@ export const PRODUCTS_GET_RELATED_LIST_RESPONSE = 'PRODUCTS/GET_RELATED_LIST_RES
 export const PRODUCTS_GET_RELATED_LIST_FAILURE = 'PRODUCTS/GET_RELATED_LIST_FAILURE'
 
 // Actions
+// in Global state
+// Any time an action is called returns a 'part of state' for this componenet
 
 // Get list of products
 export function getList(isLoading = true, forceRefresh = false) {
+  // dispatch do |thing|?
+  // redux
   return dispatch => {
     dispatch({
       type: PRODUCTS_GET_LIST_REQUEST,
