@@ -17,7 +17,7 @@ export const user = {
   args: {
     id: { type: GraphQLInt }
   },
-  resolve: getById
+  resolve: getById // function defined in resolvers.js
 }
 
 // Auth

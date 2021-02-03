@@ -8,15 +8,19 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 // Create
+// where does parentValue come from?
 export async function create(parentValue, { name, email, password }) {
   // Users exists with same email check
+  // async always followed by await
+  // wait until this is done
   const user = await models.User.findOne({ where: { email } })
 
   if (!user) {
     // User does not exists
     const passwordHashed = await bcrypt.hash(password, serverConfig.saltRounds)
 
-    return await models.User.create({
+    return await models.User.create({ 
+      // do these values need to match the model/db exactly? 
       name,
       email,
       password: passwordHashed
@@ -26,6 +30,11 @@ export async function create(parentValue, { name, email, password }) {
     throw new Error(`The email ${ email } is already registered. Please try to login.`)
   }
 }
+
+// Update function goes here?
+// something to the effect of:
+// export async function update(parentValue, { name, email, streetAddress, city, state, zip }) {
+// }
 
 export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
