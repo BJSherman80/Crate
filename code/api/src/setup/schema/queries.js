@@ -17,6 +17,7 @@ const query = new GraphQLObjectType({
     ...product,
     ...crate,
     ...subscription
+    //add delivery and deliveryProduct to list...
   })
 })
 
