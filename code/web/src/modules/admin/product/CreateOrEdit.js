@@ -197,7 +197,7 @@ class CreateOrEdit extends Component {
           this.props.messageShow("File uploaded successfully.");
 
           let product = this.state.product;
-          product.image = `/images/uploads/${response.data.file}`;
+          product.image = `/imagest/uploads/${response.data.file}`;
 
           this.setState({
             product,

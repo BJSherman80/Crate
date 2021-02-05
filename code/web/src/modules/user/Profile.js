@@ -4,17 +4,25 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-//NTS: Need to import
+
 // UI Imports
 import { Grid, GridCell } from "../../ui/grid";
 import { H3, H4 } from "../../ui/typography";
 import Button from "../../ui/button";
 import { grey, grey2 } from "../../ui/common/colors";
 
+//NTS: UI imports for image upload, description, shipping address, email address form/edit:
+// import Icon from "../../../ui/icon";
+// import { Input, Textarea, Select } from "../../../ui/input";
+// import Modal from "../../../ui/modal";
+
 // App Imports
 import userRoutes from "../../setup/routes/user";
 import { logout } from "./api/actions";
 
+// NTS: Imports for user image upload:
+// import { routeImage } from "../../../setup/routes";
+// import { upload, messageShow, messageHide } from "../../common/api/actions";
 // Component
 const Profile = (props) => (
   <div>
@@ -41,7 +49,6 @@ const Profile = (props) => (
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
         </Link>
-
         <Button
           theme="secondary"
           onClick={props.logout}

@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
+// import {} from "../src/setup/helpers.js";
 // UI Imports
 import { Grid, GridCell } from "../../ui/grid";
 
@@ -18,7 +18,7 @@ class Related extends PureComponent {
   componentDidMount() {
     this.refresh(this.props.productId);
   }
-
+  // NTS: FIX! This needs to be changed to componentWillMount to work properly
   componentWillReceiveProps(nextProps) {
     if (nextProps.productId !== this.props.productId) {
       this.refresh(nextProps.productId);
@@ -32,6 +32,7 @@ class Related extends PureComponent {
   render() {
     const { isLoading, list } = this.props.productsRelated;
     //NTS: this returns error "can't read prop length of null"
+    // NTS: no list [] returned. Missing link b/w relatedProductId
     return (
       <div>
         {/* Related product list */}

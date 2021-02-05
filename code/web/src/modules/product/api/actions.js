@@ -145,7 +145,7 @@ export function getById(productId) {
     );
   };
 }
-// Error is occurring here:
+// NTS: Error is occurring here:
 // Get list of products related to a product
 export function getRelatedList(productId, isLoading = true) {
   return (dispatch, getState) => {

@@ -1,6 +1,7 @@
 // Imports
 import { compose, combineReducers } from "redux";
 import { createStore, applyMiddleware } from "redux";
+// NTS: Add redux-devtools-extension to import in implementation branch
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
@@ -40,6 +41,6 @@ if (typeof window !== "undefined") {
 export const store = createStore(
   rootReducer,
   initialState,
-
+  // NTS: Add devtools tracking to store in implementation branch
   composeWithDevTools(applyMiddleware(thunk))
 );
