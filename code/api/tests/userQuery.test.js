@@ -1,4 +1,5 @@
-const request = require('supertest');
+const url = 'http://localhost:8000/'
+const request = require('supertest')(url);
 const express = require('express');
 
 const app = express();
@@ -6,7 +7,7 @@ const app = express();
 describe('GraphQL user query', () => {
   it('should return a single user', async () => {
     const userId = 1
-    const response = await request(app)
+    const response = await request
       .post('/')
       .send({
         query: `query {
@@ -20,6 +21,8 @@ describe('GraphQL user query', () => {
       })
 
       expect(response.status).toBe(200);
+      expect(response.body.data).toHaveProperty('user')
+      expect(response.body.data.user).toHaveProperty('id')
   });
 });
 
