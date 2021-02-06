@@ -119,6 +119,16 @@ Click on image to view fullscreen and zoom
   - Run API `cd api` and `npm run start:prod`, creates an optimized build in `build` directory and runs the server
   - Run Webapp `cd web` and `npm run start:prod`, creates an optimized build in `build` directory and runs the server
 
+## Endpoints (FE -> BE Contract)
+
+| Purpose | URL | Verb | Request Body | Sample Success Response |
+|----|----|----|----|----|
+| Update User |`/`| POST | `mutation { userUpdate( id: <int> name: <string> email: <string> password: <string> profileImage: <string> # store in public/images? streetAddress:<string> city:<string> state:<string> zip:<string> description: <string>) { id name email password profileImage streetAddress city state zip description}} | All orders on the server: {orders: [{}, {}, ...]}` | `{ "data": { "user": {"id": <int>,"name": <string>,"email": <string>,"profileImage": <string>, "streetAddress": <string>, "city": <string>, "state": <string>, "zip": <string>, "description": <string>}}}`
+| Update Deliveries |`/`| POST | `{name: <String>, ingredients: <Array of Strings>}` | New order that was added: `{id: 2, name: "Alex", ingredients: ["cheese", "beans"]}` |
+| Update Delivery Products |`/`| POST | N/A | For successful deletion: No response body (only 204 status code) |
+| Get Delivered Products |`/`| POST | N/A | For successful deletion: No response body (only 204 status code) |
+
+
 ## Multi-package automation
 - New developers are advised to run through the above 'setup and running' process before reading further.
 - Optional multi-package automation for faster setup and easier dev environment initiation.
