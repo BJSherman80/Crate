@@ -11,4 +11,4 @@ const schema = new GraphQLSchema({
   mutation
 })
 
-export default schema
+export default schema // instantiated GraphQLSchema object?
