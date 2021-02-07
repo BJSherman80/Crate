@@ -12,6 +12,9 @@ import * as product from "../modules/product/api/state";
 import * as subscription from "../modules/subscription/api/state";
 import * as crate from "../modules/crate/api/state";
 
+// These are all of the reducers that receive dispatched actions
+// from relevant components to access/update the store, combined
+
 // App Reducer
 const appReducer = combineReducers({
   common,

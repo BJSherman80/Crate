@@ -11,7 +11,7 @@ import { H3, H4 } from "../../ui/typography";
 import Button from "../../ui/button";
 import { grey, grey2 } from "../../ui/common/colors";
 
-//NTS: UI imports for image upload, description, shipping address, email address form/edit:
+//NTS: UI import addons for image upload, description, shipping address, email address form/edit:
 // import Icon from "../../../ui/icon";
 // import { Input, Textarea, Select } from "../../../ui/input";
 // import Modal from "../../../ui/modal";
@@ -23,6 +23,13 @@ import { logout } from "./api/actions";
 // NTS: Imports for user image upload:
 // import { routeImage } from "../../../setup/routes";
 // import { upload, messageShow, messageHide } from "../../common/api/actions";
+
+// Add userInfo section + (form modal for add image, descrip &
+// form modal for update/edit email, shipping Address)
+// Add deliveries section: delivery history grid by crate subscrip
+// next delivery goes on top. Click to view proucts delivered
+// and kept/returned.
+
 // Component
 const Profile = (props) => (
   <div>

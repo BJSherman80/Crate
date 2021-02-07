@@ -5,7 +5,8 @@ import Profile from '../../modules/user/Profile'
 import Subscriptions from '../../modules/user/Subscriptions'
 
 
-// NTS: These are all the routes set up that are user specific
+// NTS: These are all the routes set up that are user specific. 
+// All Routes are imported by web/src/setup/client/App and rendered.
 // Potentially need to add route for Order History, unless
 // it is rendered by Profile.
 

@@ -88,7 +88,7 @@ export function register(userDetails) {
       mutation({
         operation: "userSignup",
         variables: userDetails,
-        fields: ["id", "name", "email"],
+        fields: ["id", "name", "email"], // NTS: Add image, description, shipping address
       })
     );
   };
