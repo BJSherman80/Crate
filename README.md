@@ -119,15 +119,17 @@ Click on image to view fullscreen and zoom
   - Run API `cd api` and `npm run start:prod`, creates an optimized build in `build` directory and runs the server
   - Run Webapp `cd web` and `npm run start:prod`, creates an optimized build in `build` directory and runs the server
 
-## Endpoints (FE -> BE Contract)
-
 | Purpose | URL | Verb | Request Body | Sample Success Response |
 |----|----|----|----|----|
-| Update User |`/`| POST | `mutation { userUpdate( id: <int> name: <string> email: <string> password: <string> profileImage: <string> # store in public/images? streetAddress:<string> city:<string> state:<string> zip:<string> description: <string>) { id name email password profileImage streetAddress city state zip description}}` | `{ "data": { "user": {"id": <int>,"name": <string>,"email": <string>,"profileImage": <string>, "streetAddress": <string>, "city": <string>, "state": <string>, "zip": <string>, "description": <string>}}}`
-| Update Deliveries |`/`| POST | `{name: <String>, ingredients: <Array of Strings>}` | New order that was added: `{id: 2, name: "Alex", ingredients: ["cheese", "beans"]}` |
-| Update Delivery Products |`/`| POST | N/A | For successful deletion: No response body (only 204 status code) |
+| Update User |`/`| POST | </pre>`mutation { userUpdate( id: <int> name: <string> email: <string> password: <string> profileImage: <string> # store in public/images? streetAddress:<string> city:<string> state:<string> zip:<string> description: <string>) { id name email password profileImage streetAddress city state zip description}}` | `{ "data": { "user": {"id": <int>,"name": <string>,"email": <string>,"profileImage": <string>, "streetAddress": <string>, "city": <string>, "state": <string>, "zip": <string>, "description": <string>}}}`
+| Update Deliveries |`/`| POST | <pre> mutation {<br>  deliveryUpdate(<br>    id: `<int>`<br>    deliveryDate: `<datetime>`<br>    ){<br>      id<br>      subscriptionId<br>      deliveryDate<br>     }<br>  }</pre>| <pre>{<br>  "data": {<br>    "delivery": {<br>      "id": `<int>`, <br>      "subscriptionId": `<int>`, <br>      "deliveryDate": `<datetime>`<br>    }<br>  }<br>} </pre>|
+| Update Delivery Products |`/`| POST | <pre> mutation {<br>  deliveryProductUpdate(<br>   id: `<int>`<br>   wasReturned: `<boolean>`<br>  ){<br>    id<br>    wasReturned<br>   }<br> }</pre> | <pre>{<br>  "data": {<br>    id: `<int>`<br>    wasReturned: `<boolean>`<br>    deliveryId: `<int>`<br>    productId: `<int>`<br>  }<br>}</pre> |
 | Get Delivered Products |`/`| POST | N/A | For successful deletion: No response body (only 204 status code) |
 
+## New Relationships (FE -> BE Contract)
+- A user has many deliveries through subscriptions
+- A user has many deliveryProducts through deliveries
+- A user has many products through deliveryProducts
 
 ## Multi-package automation
 - New developers are advised to run through the above 'setup and running' process before reading further.
