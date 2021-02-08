@@ -24,6 +24,7 @@ if (token && token !== 'undefined' && token !== '') {
 
 // Client App
 const Client = () => (
+  // Allows React components to interact with Redux store
   <Provider store={store} key="provider">
     <Router>
       <ScrollToTop>
