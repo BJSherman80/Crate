@@ -15,14 +15,14 @@ export async function getById(parentValue, { crateId }) {
 }
 
 // Get all crates
-export async function getAll(parentValue, { orderBy }) {
+export async function getAll(parentValue, { orderBy }) { // function definition: parentValue is block variable?
   return await models.Crate.findAll({ order: [['id', orderBy]] })
 }
 
 // Create crate
 export async function create(parentValue, { name, description }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
-    return await models.Crate.create({
+    return await models.Crate.create({ // auth comes from bcrypt?
       name,
       description
     })

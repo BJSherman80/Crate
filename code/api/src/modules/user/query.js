@@ -12,10 +12,10 @@ export const users = {
 }
 
 // By ID
-export const user = {
+export const user = { // exported as const variable
   type: UserType, //single object defined in src/modules/users/types
-  args: {
-    id: { type: GraphQLInt }
+  args: { // arguments required for query specified here
+    id: { type: GraphQLInt } // GraphQLInt imported from 'graphql'
   },
   resolve: getById // function defined in resolvers.js
 }
@@ -25,8 +25,8 @@ export const userLogin = {
   type: UserLoginType,
   args: {
     email: {
-      name: 'email',
-      type: GraphQLString
+      name: 'email', // different syntax than above; name of arg required
+      type: GraphQLString // when multiple args are included?
     },
 
     password: {
