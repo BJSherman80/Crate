@@ -24,7 +24,9 @@ const productsInitialState = {
 }
 
 // State
+// Product reducers 
 export const products = (state = productsInitialState, action) => {
+  // switch to evaluate the action for getting all products
   switch (action.type) {
     case PRODUCTS_GET_LIST_REQUEST:
       return {
@@ -67,6 +69,7 @@ const productInitialState = {
 }
 
 // State
+// reducer to get individual product details
 export const product = (state = productInitialState, action) => {
   switch (action.type) {
     case PRODUCTS_GET_REQUEST:
@@ -108,6 +111,7 @@ const productsRelatedInitialState = {
 }
 
 // State
+// reducer for getting related products
 export const productsRelated = (state = productsRelatedInitialState, action) => {
   switch (action.type) {
     case PRODUCTS_GET_RELATED_LIST_REQUEST:
