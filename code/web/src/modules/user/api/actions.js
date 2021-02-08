@@ -13,21 +13,24 @@ export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
 
 // Actions
-
+// action creator to return object relating to the user
 // Set a user after login or using localStorage token
 export function setUser(token, user) {
+  // if there is a token(true), then set the headers authorization property to bearer with a specific token
+  // otherwise delete the property
   if (token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }
-
+  // returns action (object) for setting the user with a payload of the user
   return { type: SET_USER, user }
 }
 
 // Login a user using credentials
 export function login(userCredentials, isLoading = true) {
   return dispatch => {
+    // sends login actions to reducers
     dispatch({
       type: LOGIN_REQUEST,
       isLoading
