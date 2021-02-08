@@ -43,7 +43,7 @@ const Profile = (props) => (
 
     <Grid style={{ backgroundColor: grey }}>
       <GridCell style={{ backgroundColor: grey }} justifyCenter={true}>
-        <Card style={{ width: "18em", backgroundColor: grey }}>
+        <Card style={{ width: "18em" }}>
           <ImageTile
             // width={170}
             height={200}
