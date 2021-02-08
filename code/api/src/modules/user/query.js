@@ -7,13 +7,13 @@ import { getAll, getById, login, getGenders } from './resolvers'
 
 // All
 export const users = {
-  type: new GraphQLList(UserType),
-  resolve: getAll
+  type: new GraphQLList(UserType), // returns new list of UserType objects
+  resolve: getAll //users getAll method to get all users
 }
 
 // By ID
 export const user = {
-  type: UserType,
+  type: UserType, //single object defined in src/modules/users/types
   args: {
     id: { type: GraphQLInt }
   },
