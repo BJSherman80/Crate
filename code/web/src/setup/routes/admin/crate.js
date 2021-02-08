@@ -4,6 +4,7 @@ import CrateList from '../../../modules/admin/crate/List'
 import CrateCreateOrEdit from '../../../modules/admin/crate/CreateOrEdit'
 
 // Admin crate routes
+// Routs exported as properties in objects, with related components and role properties.
 export const crateList = {
   path: '/admin/crates',
   component: CrateList,
