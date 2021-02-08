@@ -1,10 +1,10 @@
 // Imports
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 // Component
 const Tile = (props) => {
-  const { children, image, width, height, style, shadow, ...others } = props
+  const { children, image, width, height, style, shadow, ...others } = props;
 
   return (
     <div style={Object.assign({ height, width }, style)} {...others}>
@@ -13,14 +13,15 @@ const Tile = (props) => {
       {/* language=CSS */}
       <style jsx>{`
         div {
-          background-image:url('${ image }');
+          background-image: url("${image}");
+          background-repeat: no-repeat;
           background-size: 100% auto;
-          box-shadow: ${ shadow ? shadow : 'none' };
+          box-shadow: ${shadow ? shadow : "none"};
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
 // Component Properties
 Tile.propTypes = {
@@ -28,12 +29,12 @@ Tile.propTypes = {
   style: PropTypes.object,
   width: PropTypes.number,
   height: PropTypes.number,
-  shadow: PropTypes.string
-}
+  shadow: PropTypes.string,
+};
 Tile.defaultProps = {
   style: {},
-  width: '100%',
-  height: '100%'
-}
+  width: "100%",
+  height: "100%",
+};
 
-export default Tile
+export default Tile;
