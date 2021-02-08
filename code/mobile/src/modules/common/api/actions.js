@@ -1,5 +1,6 @@
 // Actions Types
 
+// defining action types
 export const MESSAGE_SHOW = 'COMMON_MESSAGE_SHOW'
 export const MESSAGE_HIDE = 'COMMON_MESSAGE_HIDE'
 
