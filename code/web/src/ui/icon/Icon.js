@@ -23,6 +23,7 @@ const Icon = (props) => {
 }
 
 // Component Properties
+// Only type checking for size
 Icon.propTypes = {
   size: PropTypes.number
 }

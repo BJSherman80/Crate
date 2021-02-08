@@ -3,6 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // Component
+// styled component
 const Grid = (props) => {
   const {
     children,
@@ -65,6 +66,7 @@ Grid.propTypes = {
   gutter: PropTypes.bool,
 }
 
+// type checking for styles??
 Grid.defaultProps = {
   justifyRight: false,
   justifyCenter: false,

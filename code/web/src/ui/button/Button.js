@@ -8,9 +8,10 @@ import { primary as primaryGradient, secondary as secondaryGradient } from '../c
 import { level1, level2, level3, level4 } from '../common/shadows'
 
 // Component
+// Styled button component
 const Button = (props) => {
   const { children, type, disabled, theme, ...other } = props
-
+  // destructuring props to use for conditional rendering 
   return (
     <button type={type} disabled={disabled} {...other}>
       {children}
