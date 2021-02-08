@@ -120,4 +120,6 @@ function detailState(state) {
   }
 }
 
+// connects to detailState (container) to the redux store
+    // adds Detail component to the container's directory
 export default withRouter(connect(detailState, { get })(Detail))
