@@ -13,6 +13,7 @@ const App = () => (
     <Switch>
       {Object.values(routes).map((route, index) => (
         route.auth
+        // conditional render for routing. Hard to tell what the ternaries are saying.
           ? <RoutePrivate {...route} key={index} path={typeof route.path === 'function' ? route.path() : route.path}/>
           : <Route {...route} key={index} path={typeof route.path === 'function' ? route.path() : route.path}/>
       ))}
