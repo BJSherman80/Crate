@@ -6,6 +6,7 @@ import { query, mutation } from 'gql-query-builder'
 import { routeApi } from '../../../setup/routes'
 
 // Actions Types
+// Assignment of action types to string values
 export const PRODUCTS_GET_LIST_REQUEST = 'PRODUCTS/GET_LIST_REQUEST'
 export const PRODUCTS_GET_LIST_RESPONSE = 'PRODUCTS/GET_LIST_RESPONSE'
 export const PRODUCTS_GET_LIST_FAILURE = 'PRODUCTS/GET_LIST_FAILURE'
@@ -20,6 +21,7 @@ export const PRODUCTS_GET_RELATED_LIST_FAILURE = 'PRODUCTS/GET_RELATED_LIST_FAIL
 // Actions
 
 // Get list of products
+// Defining actions for getting products to show on the page depending on the response status
 export function getList(isLoading = true, forceRefresh = false) {
   return dispatch => {
     dispatch({
@@ -120,7 +122,7 @@ export function getById(productId) {
 export function getRelatedList(productId, isLoading = true) {
   return (dispatch, getState) => {
     let state = getState()
-
+    // run PRODUCTS_GET_RELATED_LIST_REQUEST if the length is zero or the productId's don't match
     if (state.productsRelated.list.length === 0 || state.productId !== productId) {
       dispatch({
         type: PRODUCTS_GET_RELATED_LIST_REQUEST,
