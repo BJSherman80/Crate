@@ -11,6 +11,7 @@ export const LOGIN_REQUEST = "AUTH/LOGIN_REQUEST";
 export const LOGIN_RESPONSE = "AUTH/LOGIN_RESPONSE";
 export const SET_USER = "AUTH/SET_USER";
 export const LOGOUT = "AUTH/LOGOUT";
+export const UPDATE_USER_DETAILS = "AUTH/UPDATE_USER_DETAILS";
 
 // Actions
 
@@ -123,6 +124,21 @@ export function getGenders() {
       query({
         operation: "userGenders",
         fields: ["id", "name"],
+      })
+    );
+  };
+}
+
+// Update user details
+
+export function update(userDetails) {
+  return (dispatch) => {
+    return axios.post(
+      routeApi,
+      mutation({
+        operation: "updateUserDetails",
+        variables: userDetails,
+        fields: ["email"],
       })
     );
   };

@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 // UI Imports
 import { Grid, GridCell } from "../../ui/grid";
 import Icon from "../../ui/icon";
-import Tile from "../../ui/image/Tile";
-import { Input, Textarea, Select } from "../../ui/input";
+// import Tile from "../../ui/image/Tile";
+// import { Input, Textarea, Select } from "../../ui/input";
 import Card from "../../ui/card/Card";
 import ImageTile from "../../ui/image/Tile";
 import { H3, H4 } from "../../ui/typography";
@@ -41,11 +41,11 @@ const Profile = (props) => (
 
     {/* User Information Grid: image, name, email, shipping address, descrip  */}
 
-    <Grid style={{ backgroundColor: grey }}>
-      <GridCell style={{ backgroundColor: grey }} justifyCenter={true}>
+    <Grid>
+      <GridCell style={{ padding: "2em" }} justifyCenter={true}>
         <Card style={{ width: "18em" }}>
           <ImageTile
-            // width={170}
+            width={288}
             height={200}
             shadow={level1}
             image={`${APP_URL}/images/profile_placeholder.jpg`}
@@ -62,22 +62,26 @@ const Profile = (props) => (
             >
               <Avatar name={props.user.details.name} />
 
-              {/* <Link to={admin.crateEdit.path(id)}> */}
-              <Icon size={2} style={{ color: "#5f5dbe" }}>
-                mode_edit
-              </Icon>
-              {/* </Link> */}
+              <Link to={userRoutes.profileEdit.path}>
+                <Icon size={2} style={{ color: "#5f5dbe" }}>
+                  mode_edit
+                </Icon>
+              </Link>
             </div>
-            <H4 style={{ marginBottom: "0.5em" }}>{props.user.details.name}</H4>
-            <p style={{ color: grey2, marginBottom: "2em" }}>
-              {props.user.details.email}
-            </p>
-            <div
-              style={{ color: grey2, marginBottom: "2em" }}
-              aria-label="shipping-address"
-            >
-              <p>227 Elder Ave.</p>
-              <p>Denver, CO 80205</p>
+            <div style={{ textAlign: "center" }}>
+              <H4 style={{ marginBottom: "0.5em" }}>
+                {props.user.details.name}
+              </H4>
+              <p style={{ color: grey2, marginBottom: "2em" }}>
+                {props.user.details.email}
+              </p>
+              <div
+                style={{ color: grey2, marginBottom: "2em" }}
+                aria-label="shipping-address"
+              >
+                <p>227 Elder Ave.</p>
+                <p>Denver, CO 80205</p>
+              </div>
             </div>
             <div>
               <p style={{ color: grey2, marginBottom: "2em" }}>
