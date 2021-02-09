@@ -3,12 +3,12 @@ import models from '../../setup/models'
 import params from '../../config/params'
 
 // Get crate by ID
-export async function getById(parentValue, { crateId }) {
+export async function getById(parentValue, { crateId }) { // requires where statement to find a single resource?
   const crate = await models.Crate.findOne({ where: { id: crateId } })
 
   if (!crate) {
-    // Crate does not exists
-    throw new Error('The crate you are looking for does not exists or has been discontinued.')
+    // Crate does not exist <- changed 'exists' to 'exist'
+    throw new Error('The crate you are looking for does not exist or has been discontinued.')
   } else {
     return crate
   }
