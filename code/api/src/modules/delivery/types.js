@@ -18,4 +18,4 @@ const DeliveryType = new GraphQLObjectType({
   })
 })
 
-export default SubscriptionType
+export default DeliveryType
