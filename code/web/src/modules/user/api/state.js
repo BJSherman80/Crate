@@ -29,7 +29,7 @@ export default (state = userInitialState, action) => {
     case UPDATE_USER_DETAILS:
       return {
         ...state,
-        details: action.user,
+        details: action.userDetails,
       };
 
     case LOGIN_REQUEST:

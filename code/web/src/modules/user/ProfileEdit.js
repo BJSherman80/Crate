@@ -18,8 +18,13 @@ import { white } from "../../ui/common/colors";
 import userRoutes from "../../setup/routes/user";
 import { routeImage } from "../../setup/routes";
 import { renderIf } from "../../setup/helpers";
-import { createOrUpdate as userUpdateDetails } from "./api/actions";
-import { upload, messageShow, messageHide } from "../common/api/actions";
+// import { createOrUpdate as userUpdateDetails } from "./api/actions";
+import {
+  upload,
+  messageShow,
+  messageHide,
+  update,
+} from "../common/api/actions";
 import { APP_URL } from "../../setup/config/env";
 
 // import AdminMenu from "../common/Menu";
@@ -32,10 +37,10 @@ class ProfileEdit extends Component {
 
     this.state = {
       isLoading: false,
-      user: {
+      userDetails: {
         // id: 0,
-        name: "",
-        email: "",
+        name: this.props.userDetails.name,
+        email: this.props.userDetails.email,
         shippingAddress: "",
         description: "",
         image: "",
@@ -43,38 +48,47 @@ class ProfileEdit extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.state.user, this.props);
+    // const existingUserDetails = this.props.userDetails;
+    // this.setState({
+    //   userDetails: {
+    //     ...existingUserDetails,
+    //     shippingAddress: "",
+    //     description: "",
+    //     image: "",
+    //   },
+    // });
+    console.log(this.state);
   }
 
   onChange = (event) => {
-    let user = this.state.user;
-    user[event.target.name] = event.target.value;
+    let userDetails = this.state.userDetails;
+    userDetails[event.target.name] = event.target.value;
 
-    if (event.target.name === "name") {
-      user.name = event.target.value;
-    }
+    // if (event.target.name === "name") {
+    //   user.name = event.target.value;
+    // }
 
     this.setState({
-      user,
+      userDetails,
     });
   };
 
   onSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.user);
-    console.log(this.props.user.details);
-    let userEmail = this.props.user.details.email;
-    let newEmail = this.state.user.email;
-    userEmail = newEmail;
+    const userDetails = this.state.userDetails;
+    console.log(userDetails);
+    // this.props.update(userDetails);
     this.setState({
       isLoading: true,
     });
+    console.log(this.state.userDetails);
+    console.log(this.props.userDetails);
 
     // this.props.messageShow("Saving changes, please wait...");
 
     // Save changes
     // this.props
-    //   .register(this.state.user)
+    //   .update(this.state.user)
     //   .then((response) => {
     //     this.setState({
     //       isLoading: false,
@@ -148,7 +162,7 @@ class ProfileEdit extends Component {
       <div>
         {/* SEO */}
         <Helmet>
-          <title>Profile / Update - User - Crate</title>
+          <title>Profile / Update - User Details - Crate</title>
         </Helmet>
 
         {/* Page Content */}
@@ -181,11 +195,11 @@ class ProfileEdit extends Component {
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder="email"
+                    placeholder={this.props.userDetails.email}
                     required="required"
                     name="email"
-                    autoComplete="off"
-                    value={this.state.user.email}
+                    autoComplete="on"
+                    value={this.state.userDetails.email}
                     onChange={this.onChange}
                   />
                   {/* shipping address */}
@@ -196,7 +210,7 @@ class ProfileEdit extends Component {
                     required="required"
                     name="shippingAddress"
                     autoComplete="off"
-                    value={this.state.user.shippingAddress}
+                    value={this.state.userDetails.shippingAddress}
                     onChange={this.onChange}
                   />
 
@@ -206,7 +220,7 @@ class ProfileEdit extends Component {
                     placeholder="Description"
                     required="required"
                     name="description"
-                    value={this.state.user.description}
+                    value={this.state.userDetails.description}
                     onChange={this.onChange}
                     style={{ marginTop: "1em" }}
                   />
@@ -221,9 +235,9 @@ class ProfileEdit extends Component {
                   </div>
 
                   {/* Uploaded image */}
-                  {renderIf(this.state.user.image !== "", () => (
+                  {renderIf(this.state.userDetails.image !== "", () => (
                     <img
-                      src={routeImage + this.state.user.image}
+                      src={routeImage + this.state.userDetails.image}
                       alt="User Image"
                       style={{ width: 200, marginTop: "1em" }}
                     />
@@ -254,7 +268,8 @@ class ProfileEdit extends Component {
 
 // Component Properties
 ProfileEdit.propTypes = {
-  user: PropTypes.object.isRequired,
+  // update: PropTypes.func.isRequired,
+  userDetails: PropTypes.object.isRequired,
   upload: PropTypes.func.isRequired,
   messageShow: PropTypes.func.isRequired,
   messageHide: PropTypes.func.isRequired,
@@ -262,12 +277,12 @@ ProfileEdit.propTypes = {
 
 function profileEditState(state) {
   return {
-    user: state.user,
+    userDetails: state.user.details,
   };
 }
 
 export default connect(profileEditState, {
-  // userUpdateDetails,
+  // update,
   upload,
   messageShow,
   messageHide,

@@ -133,13 +133,17 @@ export function getGenders() {
 
 export function update(userDetails) {
   return (dispatch) => {
-    return axios.post(
-      routeApi,
-      mutation({
-        operation: "updateUserDetails",
-        variables: userDetails,
-        fields: ["email"],
-      })
-    );
+    dispatch({
+      type: UPDATE_USER_DETAILS,
+      userDetails,
+    });
+    // return axios.post(
+    //   routeApi,
+    //   mutation({
+    //     operation: "updateUserDetails",
+    //     variables: userDetails,
+    //     fields: ["email"],
+    //   })
+    // );
   };
 }
