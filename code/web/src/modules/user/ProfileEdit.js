@@ -5,13 +5,14 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import states from "./states";
 
 // UI Imports
 import { Grid, GridCell } from "../../ui/grid";
 import Button from "../../ui/button";
 import Icon from "../../ui/icon";
 import H4 from "../../ui/typography/H4";
-import { Input, Textarea } from "../../ui/input";
+import { Input, Textarea, Select } from "../../ui/input";
 import { white } from "../../ui/common/colors";
 
 // App Imports
@@ -38,6 +39,7 @@ class ProfileEdit extends Component {
         name: this.props.userDetails.name,
         email: this.props.userDetails.email,
         shippingAddress: "",
+        addressState: "",
         description: "",
         image: "",
       },
@@ -195,6 +197,24 @@ class ProfileEdit extends Component {
                     value={this.state.userDetails.shippingAddress}
                     onChange={this.onChange}
                   />
+
+                  {/* State */}
+                  <Select
+                    fullWidth={true}
+                    required="required"
+                    name="state"
+                    value={this.state.userDetails.state}
+                    onChange={this.onChange}
+                    style={{ marginTop: "1em" }}
+                  >
+                    <option>Select a State</option>
+                    {states.map((singleState) => (
+                        <option value={singleState} key={singleState}>
+                          {singleState}
+                        </option>
+                      ))
+                    }
+                  </Select>
 
                   {/* Description */}
                   <Textarea
