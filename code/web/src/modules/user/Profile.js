@@ -49,7 +49,11 @@ const Profile = (props) => (
             width={288}
             height={200}
             shadow={level1}
-            image={`${APP_URL}/images/profile_placeholder.jpg`}
+            image={
+              props.user.details.image !== undefined
+                ? props.user.details.image
+                : `${APP_URL}/images/profile_placeholder.jpg`
+            }
           />
           <div style={{ padding: "2em", marginBottom: "0.5em" }}>
             <div
@@ -80,37 +84,88 @@ const Profile = (props) => (
                 style={{ color: grey2, marginBottom: "2em" }}
                 aria-label="shipping-address"
               >
-                <p>227 Elder Ave.</p>
-                <p>Denver, CO 80205</p>
+                <p>
+                  {props.user.details.shippingAddress !== undefined
+                    ? props.user.details.shippingAddress
+                    : "Update your shipping address to receive your crates!"}
+                </p>
               </div>
             </div>
             <div>
               <p style={{ color: grey2, marginBottom: "2em" }}>
-                This is a fun little paragraph about me and my personal style,
-                etc.
+                {props.user.details.description !== undefined
+                  ? props.user.details.description
+                  : "Express yourself here by updating your profile"}
               </p>
             </div>
           </div>
         </Card>
       </GridCell>
-      <Grid>
-        <GridCell style={{ padding: "2em", textAlign: "left", flex: 2 }}>
-          <H4 style={{ marginBottom: "0.5em" }}>Delivery History</H4>
-          <Subscriptions />
-          <Link to={userRoutes.subscriptions.path}>
-            <Button theme="primary">Subscriptions</Button>
-          </Link>
+      {/* <Grid> */}
+      <GridCell style={{ paddingTop: "4em", textAlign: "left", flex: 2 }}>
+        <H4 style={{ marginBottom: "0.5em" }}>Delivery History</H4>
 
-          <Button
-            theme="secondary"
-            onClick={props.logout}
-            style={{ marginLeft: "1em" }}
-          >
-            Logout
-          </Button>
-        </GridCell>
-      </Grid>
+        <table className="striped">
+          <thead>
+            <tr>
+              <th>Crate</th>
+              <th>Delivery Date</th>
+              <th>Order Number</th>
+              <th>Something Else</th>
+              <th style={{ textAlign: "center" }}>Click to View Products</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {/* {isLoading ? ( */}
+            <tr>
+              <td colSpan="6">Loading...</td>
+            </tr>
+
+            <tr key={1}>
+              <td>name</td>
+
+              <td>description</td>
+
+              <td>Date</td>
+
+              <td>Date</td>
+
+              <td style={{ textAlign: "center" }}>
+                {/* <Link to={admin.crateEdit.path(id)}> */}
+                <Icon size={2} style={{ color: black }}>
+                  mode_edit
+                </Icon>
+                {/* </Link> */}
+
+                <span
+                  style={{ cursor: "pointer" }}
+                  // onClick={this.remove.bind(this, id)}
+                >
+                  <Icon size={2} style={{ marginLeft: "0.5em" }}>
+                    delete
+                  </Icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {/* </GridCell> */}
+        {/* </Grid> */}
+        <Link to={userRoutes.subscriptions.path}>
+          <Button theme="primary">Subscriptions</Button>
+        </Link>
+
+        <Button
+          theme="secondary"
+          onClick={props.logout}
+          style={{ marginLeft: "1em" }}
+        >
+          Logout
+        </Button>
+      </GridCell>
     </Grid>
+    {/* </Grid> */}
   </div>
 );
 

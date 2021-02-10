@@ -43,26 +43,13 @@ class ProfileEdit extends Component {
       },
     };
   }
-  componentDidMount() {
-    // const existingUserDetails = this.props.userDetails;
-    // this.setState({
-    //   userDetails: {
-    //     ...existingUserDetails,
-    //     shippingAddress: "",
-    //     description: "",
-    //     image: "",
-    //   },
-    // });
-    console.log(this.props);
-  }
+  // componentDidMount() {
+  // console.log(this.props);
+  // }
 
   onChange = (event) => {
     let userDetails = this.state.userDetails;
     userDetails[event.target.name] = event.target.value;
-
-    // if (event.target.name === "name") {
-    //   user.name = event.target.value;
-    // }
 
     this.setState({
       userDetails,
@@ -72,16 +59,15 @@ class ProfileEdit extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     const userDetails = this.state.userDetails;
-    console.log(userDetails);
     this.props.update(userDetails);
     this.setState({
       isLoading: true,
     });
-    console.log(this.state.userDetails);
-    console.log(this.props.userDetails);
 
     // this.props.messageShow("Saving changes, please wait...");
+    this.props.messageShow("Details updated successfully.");
 
+    this.props.history.push(userRoutes.profile.path);
     // Save changes
     // this.props
     //   .update(this.state.user)
@@ -129,11 +115,11 @@ class ProfileEdit extends Component {
         if (response.status === 200) {
           this.props.messageShow("File uploaded successfully.");
 
-          let user = this.state.user;
-          user.image = `/images/uploads/${response.data.file}`;
+          let userDetails = this.state.userDetails;
+          userDetails.image = `/images/uploads/${response.data.file}`;
 
           this.setState({
-            user,
+            userDetails,
           });
         } else {
           this.props.messageShow("Please try again.");
@@ -277,11 +263,13 @@ function profileEditState(state) {
   };
 }
 
-export default connect(profileEditState, {
-  update,
-  upload,
-  messageShow,
-  messageHide,
-})(ProfileEdit);
+export default withRouter(
+  connect(profileEditState, {
+    update,
+    upload,
+    messageShow,
+    messageHide,
+  })(ProfileEdit)
+);
 
 // export default connect(profileEditState, {})(ProfileEdit);
