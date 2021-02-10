@@ -133,7 +133,7 @@ export function getGenders() {
 
 export function update(userDetails) {
   return (dispatch) => {
-    dispatch({
+    return dispatch({
       type: UPDATE_USER_DETAILS,
       userDetails,
     });

@@ -22,6 +22,7 @@ import { level1 } from "../../ui/common/shadows";
 import userRoutes from "../../setup/routes/user";
 import { logout } from "./api/actions";
 import { APP_URL } from "../../setup/config/env";
+import Subscriptions from "./Subscriptions";
 
 // Component
 const Profile = (props) => (
@@ -92,23 +93,23 @@ const Profile = (props) => (
           </div>
         </Card>
       </GridCell>
-      {/* <Grid> */}
-      <GridCell style={{ padding: "2em", textAlign: "left", flex: 2 }}>
-        <H4 style={{ marginBottom: "0.5em" }}>Delivery History</H4>
+      <Grid>
+        <GridCell style={{ padding: "2em", textAlign: "left", flex: 2 }}>
+          <H4 style={{ marginBottom: "0.5em" }}>Delivery History</H4>
+          <Subscriptions />
+          <Link to={userRoutes.subscriptions.path}>
+            <Button theme="primary">Subscriptions</Button>
+          </Link>
 
-        <Link to={userRoutes.subscriptions.path}>
-          <Button theme="primary">Subscriptions</Button>
-        </Link>
-
-        <Button
-          theme="secondary"
-          onClick={props.logout}
-          style={{ marginLeft: "1em" }}
-        >
-          Logout
-        </Button>
-      </GridCell>
-      {/* </Grid> */}
+          <Button
+            theme="secondary"
+            onClick={props.logout}
+            style={{ marginLeft: "1em" }}
+          >
+            Logout
+          </Button>
+        </GridCell>
+      </Grid>
     </Grid>
   </div>
 );

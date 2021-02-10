@@ -19,12 +19,8 @@ import userRoutes from "../../setup/routes/user";
 import { routeImage } from "../../setup/routes";
 import { renderIf } from "../../setup/helpers";
 // import { createOrUpdate as userUpdateDetails } from "./api/actions";
-import {
-  upload,
-  messageShow,
-  messageHide,
-  update,
-} from "../common/api/actions";
+import { upload, messageShow, messageHide } from "../common/api/actions";
+import { update } from "./api/actions";
 import { APP_URL } from "../../setup/config/env";
 
 // import AdminMenu from "../common/Menu";
@@ -57,7 +53,7 @@ class ProfileEdit extends Component {
     //     image: "",
     //   },
     // });
-    console.log(this.state);
+    console.log(this.props);
   }
 
   onChange = (event) => {
@@ -77,7 +73,7 @@ class ProfileEdit extends Component {
     event.preventDefault();
     const userDetails = this.state.userDetails;
     console.log(userDetails);
-    // this.props.update(userDetails);
+    this.props.update(userDetails);
     this.setState({
       isLoading: true,
     });
@@ -268,7 +264,7 @@ class ProfileEdit extends Component {
 
 // Component Properties
 ProfileEdit.propTypes = {
-  // update: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
   userDetails: PropTypes.object.isRequired,
   upload: PropTypes.func.isRequired,
   messageShow: PropTypes.func.isRequired,
@@ -282,7 +278,7 @@ function profileEditState(state) {
 }
 
 export default connect(profileEditState, {
-  // update,
+  update,
   upload,
   messageShow,
   messageHide,
