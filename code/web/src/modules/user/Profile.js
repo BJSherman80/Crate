@@ -22,152 +22,110 @@ import { level1 } from "../../ui/common/shadows";
 import userRoutes from "../../setup/routes/user";
 import { logout } from "./api/actions";
 import { APP_URL } from "../../setup/config/env";
-import Subscriptions from "./Subscriptions";
+import Deliveries from "./Deliveries";
+import { getListByUser } from "../subscription/api/actions";
 
 // Component
-const Profile = (props) => (
-  <div>
-    {/* SEO */}
-    <Helmet>
-      <title>My Profile - Crate</title>
-    </Helmet>
+const Profile = (props) => {
+  return (
+    <div>
+      {/* SEO */}
+      <Helmet>
+        <title>My Profile - Crate</title>
+      </Helmet>
 
-    {/* Top title bar */}
+      {/* Top title bar */}
 
-    <Grid style={{ textAlign: "center", backgroundColor: grey }}>
-      <GridCell style={{ padding: "2em" }}>
-        <H3 font="secondary">My profile</H3>
-      </GridCell>
-    </Grid>
+      <Grid style={{ textAlign: "center", backgroundColor: grey }}>
+        <GridCell style={{ padding: "2em" }}>
+          <H3 font="secondary">My profile</H3>
+        </GridCell>
+      </Grid>
 
-    {/* User Information Grid: image, name, email, shipping address, descrip  */}
+      {/* User Information Grid: image, name, email, shipping address, descrip  */}
 
-    <Grid>
-      <GridCell style={{ padding: "2em" }} justifyCenter={true}>
-        <Card style={{ width: "18em" }}>
-          <ImageTile
-            width={288}
-            height={200}
-            shadow={level1}
-            image={
-              props.user.details.image !== undefined
-                ? props.user.details.image
-                : `${APP_URL}/images/profile_placeholder.jpg`
-            }
-          />
-          <div style={{ padding: "2em", marginBottom: "0.5em" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                margin: "-20px",
-                paddingBottom: "1em",
-              }}
-            >
-              <Avatar name={props.user.details.name} />
-
-              <Link to={userRoutes.profileEdit.path}>
-                <Icon size={2} style={{ color: "#5f5dbe" }}>
-                  mode_edit
-                </Icon>
-              </Link>
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <H4 style={{ marginBottom: "0.5em" }}>
-                {props.user.details.name}
-              </H4>
-              <p style={{ color: grey2, marginBottom: "2em" }}>
-                {props.user.details.email}
-              </p>
+      <Grid>
+        <GridCell style={{ padding: "2em" }} justifyCenter={true}>
+          <Card style={{ width: "18em" }}>
+            <ImageTile
+              width={288}
+              height={200}
+              shadow={level1}
+              image={
+                props.user.details.image !== undefined
+                  ? props.user.details.image
+                  : `${APP_URL}/images/profile_placeholder.jpg`
+              }
+            />
+            <div style={{ padding: "2em", marginBottom: "0.5em" }}>
               <div
-                style={{ color: grey2, marginBottom: "2em" }}
-                aria-label="shipping-address"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  margin: "-20px",
+                  paddingBottom: "1em",
+                }}
               >
-                <p>
-                  {props.user.details.shippingAddress !== undefined
-                    ? props.user.details.shippingAddress
-                    : "Update your shipping address to receive your crates!"}
+                <Avatar name={props.user.details.name} />
+
+                <Link to={userRoutes.profileEdit.path}>
+                  <Icon size={2} style={{ color: "#5f5dbe" }}>
+                    mode_edit
+                  </Icon>
+                </Link>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <H4 style={{ marginBottom: "0.5em" }}>
+                  {props.user.details.name}
+                </H4>
+                <p style={{ color: grey2, marginBottom: "2em" }}>
+                  {props.user.details.email}
+                </p>
+                <div
+                  style={{ color: grey2, marginBottom: "2em" }}
+                  aria-label="shipping-address"
+                >
+                  <p>
+                    {props.user.details.shippingAddress !== undefined
+                      ? props.user.details.shippingAddress
+                      : "Update your shipping address to receive your crates!"}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <p style={{ color: grey2, marginBottom: "2em" }}>
+                  {props.user.details.description !== undefined
+                    ? props.user.details.description
+                    : "Express yourself here by updating your profile"}
                 </p>
               </div>
             </div>
-            <div>
-              <p style={{ color: grey2, marginBottom: "2em" }}>
-                {props.user.details.description !== undefined
-                  ? props.user.details.description
-                  : "Express yourself here by updating your profile"}
-              </p>
-            </div>
-          </div>
-        </Card>
-      </GridCell>
-      {/* <Grid> */}
-      <GridCell style={{ paddingTop: "4em", textAlign: "left", flex: 2 }}>
-        <H4 style={{ marginBottom: "0.5em" }}>Delivery History</H4>
+          </Card>
+        </GridCell>
+        {/* <Grid> */}
+        <GridCell style={{ paddingTop: "4em", textAlign: "left", flex: 2 }}>
+          <Deliveries />
 
-        <table className="striped">
-          <thead>
-            <tr>
-              <th>Crate</th>
-              <th>Delivery Date</th>
-              <th>Order Number</th>
-              <th>Something Else</th>
-              <th style={{ textAlign: "center" }}>Click to View Products</th>
-            </tr>
-          </thead>
+          {/* </GridCell> */}
+          {/* </Grid> */}
+          <Link to={userRoutes.subscriptions.path}>
+            <Button theme="primary">Subscriptions</Button>
+          </Link>
 
-          <tbody>
-            {/* {isLoading ? ( */}
-            <tr>
-              <td colSpan="6">Loading...</td>
-            </tr>
-
-            <tr key={1}>
-              <td>name</td>
-
-              <td>description</td>
-
-              <td>Date</td>
-
-              <td>Date</td>
-
-              <td style={{ textAlign: "center" }}>
-                {/* <Link to={admin.crateEdit.path(id)}> */}
-                <Icon size={2} style={{ color: black }}>
-                  mode_edit
-                </Icon>
-                {/* </Link> */}
-
-                <span
-                  style={{ cursor: "pointer" }}
-                  // onClick={this.remove.bind(this, id)}
-                >
-                  <Icon size={2} style={{ marginLeft: "0.5em" }}>
-                    delete
-                  </Icon>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        {/* </GridCell> */}
-        {/* </Grid> */}
-        <Link to={userRoutes.subscriptions.path}>
-          <Button theme="primary">Subscriptions</Button>
-        </Link>
-
-        <Button
-          theme="secondary"
-          onClick={props.logout}
-          style={{ marginLeft: "1em" }}
-        >
-          Logout
-        </Button>
-      </GridCell>
-    </Grid>
-    {/* </Grid> */}
-  </div>
-);
+          <Button
+            theme="secondary"
+            onClick={props.logout}
+            style={{ marginLeft: "1em" }}
+          >
+            Logout
+          </Button>
+        </GridCell>
+      </Grid>
+      {/* </Grid> */}
+    </div>
+  );
+};
 
 // Component Properties
 Profile.propTypes = {
