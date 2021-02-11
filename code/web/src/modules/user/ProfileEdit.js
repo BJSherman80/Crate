@@ -38,8 +38,10 @@ class ProfileEdit extends Component {
         // id: 0,
         name: this.props.userDetails.name,
         email: this.props.userDetails.email,
-        shippingAddress: "",
+        streetAddress: "",
+        cityAddress: "",
         addressState: "",
+        zip: "",
         description: "",
         image: "",
       },
@@ -186,24 +188,36 @@ class ProfileEdit extends Component {
                     value={this.state.userDetails.email}
                     onChange={this.onChange}
                   />
-                  {/* shipping address */}
+                  {/* street address */}
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder="shipping address"
+                    placeholder="street address"
                     required="required"
-                    name="shippingAddress"
+                    name="streetAddress"
                     autoComplete="off"
-                    value={this.state.userDetails.shippingAddress}
+                    value={this.state.userDetails.streetAddress}
                     onChange={this.onChange}
                   />
+                  {/*City*/}
 
+                  <Input
+                    type="text"
+                    fullWidth={true}
+                    placeholder="city"
+                    required="required"
+                    name="cityAddress"
+                    autoComplete="off"
+                    value={this.state.userDetails.cityAddress}
+                    onChange={this.onChange}
+                  />
                   {/* State */}
+                  
                   <Select
                     fullWidth={true}
                     required="required"
-                    name="state"
-                    value={this.state.userDetails.state}
+                    name="addressState"
+                    value={this.state.userDetails.addressState}
                     onChange={this.onChange}
                     style={{ marginTop: "1em" }}
                   >
@@ -215,6 +229,18 @@ class ProfileEdit extends Component {
                       ))
                     }
                   </Select>
+                  {/* Zip */}
+                  
+                  <Input
+                    type="text"
+                    fullWidth={true}
+                    placeholder="zipcode"
+                    required="required"
+                    name="zip"
+                    autoComplete="off"
+                    value={this.state.userDetails.zip}
+                    onChange={this.onChange}
+                  />
 
                   {/* Description */}
                   <Textarea
