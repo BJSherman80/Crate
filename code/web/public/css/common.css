@@ -66,3 +66,7 @@ th {
   font-weight: bold;
   border-bottom: 1px solid #dddddd;
 }
+
+#blockColorblindContent {
+  display: none;
+}
