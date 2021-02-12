@@ -1,11 +1,11 @@
 // App Imports
 import models from '../../setup/models'
 import params from '../../config/params'
-
+// These are all of the methods for accessing the data 
 // Get crate by ID
 export async function getById(parentValue, { crateId }) {
   const crate = await models.Crate.findOne({ where: { id: crateId } })
-
+// THis is for if a crate does not exist 
   if (!crate) {
     // Crate does not exists
     throw new Error('The crate you are looking for does not exists or has been discontinued.')

@@ -1,3 +1,4 @@
+//This file creates the products table 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('products', {

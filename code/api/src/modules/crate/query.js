@@ -1,6 +1,6 @@
 // Imports
 import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql'
-
+// query params for graphql
 // App Imports
 import CrateType from './types'
 import { getAll, getById } from './resolvers'

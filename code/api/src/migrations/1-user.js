@@ -1,3 +1,5 @@
+
+//This file creates the users table and set the type 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {

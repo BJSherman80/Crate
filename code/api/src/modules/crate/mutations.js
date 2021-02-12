@@ -1,6 +1,6 @@
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
-
+// These are mutations for graph ql !!!!!
 // App Imports
 import CrateType from './types'
 import { create, remove, update } from './resolvers'

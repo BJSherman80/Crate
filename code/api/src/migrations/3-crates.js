@@ -1,3 +1,4 @@
+//This file creates the crates table 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('crates', {

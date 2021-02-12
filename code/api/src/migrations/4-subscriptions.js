@@ -1,3 +1,4 @@
+//This file creates the subscrptions table and we will need to make a couple new migrations for a deliveries table and a joins table for products and deliveries.
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('subscriptions', {

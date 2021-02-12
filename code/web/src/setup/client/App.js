@@ -1,4 +1,5 @@
 // Imports
+//I think this is the routes file
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
