@@ -3,11 +3,13 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 // Get all products
+// returns all products
 export async function getAll() {
   return await models.Product.findAll({ order: [['id', 'DESC']] })
 }
 
 // Get product by slug
+// Grabs slug as an agrument, returns product if exists or returns error if it dosn't
 export async function getBySlug(parentValue, { slug }) {
   const product = await models.Product.findOne({ where: { slug } })
 
@@ -20,6 +22,7 @@ export async function getBySlug(parentValue, { slug }) {
 }
 
 // Get product by ID
+// Grabs id as an agrument, returns product if exists or returns error if it dosn't
 export async function getById(parentValue, { productId }) {
   const product = await models.Product.findOne({ where: { id: productId } })
 
@@ -32,6 +35,7 @@ export async function getById(parentValue, { productId }) {
 }
 
 // Get related products
+// Grabs id as an agrument, returns related product if exists 
 export async function getRelated(parentValue, { productId }) {
   return await models.Product.findAll({
     where: {
@@ -43,6 +47,7 @@ export async function getRelated(parentValue, { productId }) {
 }
 
 // Create product
+// Grabs multipule arguments, returns product if created or error if it did not
 export async function create(parentValue, { name, slug, description, type, gender, image }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
     return await models.Product.create({
@@ -59,6 +64,7 @@ export async function create(parentValue, { name, slug, description, type, gende
 }
 
 // Update product
+// Grabs multiple arguments, returns product if updated or error if it does not
 export async function update(parentValue, { id, name, slug, description, type, gender, image }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
     return await models.Product.update(

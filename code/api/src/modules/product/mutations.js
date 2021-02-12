@@ -6,6 +6,7 @@ import { ProductType } from './types'
 import { create, update, remove } from './resolvers'
 
 // Product create
+// Making a mutation that accepts multiple arguments, points to create resolver
 export const productCreate = {
   type: ProductType,
   args: {
@@ -43,6 +44,7 @@ export const productCreate = {
 }
 
 // Product update
+// Making a mutation that accepts multiple arguments, points to update resolver
 export const productUpdate = {
   type: ProductType,
   args: {
@@ -85,6 +87,8 @@ export const productUpdate = {
 }
 
 // Product remove
+// Making a mutation that accepts a id, points to remove resolver
+
 export const productRemove = {
   type: ProductType,
   args: {

@@ -2,6 +2,7 @@
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // Product type
+// information that your allow to see when you query
 const ProductType = new GraphQLObjectType({
   name: 'product',
   description: 'Product Type',
@@ -20,6 +21,8 @@ const ProductType = new GraphQLObjectType({
 })
 
 // User Gender type
+// returns male or female depending on gender 
+// need to look more into it
 const ProductTypesType = new GraphQLObjectType({
   name: 'productTypesType',
   description: 'User Types Type',

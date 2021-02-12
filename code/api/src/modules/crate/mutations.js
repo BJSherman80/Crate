@@ -6,6 +6,7 @@ import CrateType from './types'
 import { create, remove, update } from './resolvers'
 
 // Crate create
+// Making a mutation that accepts a name and a description, points to create resolver
 export const crateCreate = {
   type: CrateType,
   args: {
@@ -23,6 +24,7 @@ export const crateCreate = {
 }
 
 // Crate update
+// Making a mutation that accepts a name, a id, and a description, points to update resolver
 export const crateUpdate = {
   type: CrateType,
   args: {
@@ -45,6 +47,7 @@ export const crateUpdate = {
 }
 
 // Crate remove
+// Making a mutation that accepts a id, points to remove resolver
 export const crateRemove = {
   type: CrateType,
   args: {

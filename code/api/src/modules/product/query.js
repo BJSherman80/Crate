@@ -6,12 +6,14 @@ import { ProductType, ProductTypesType } from './types'
 import { getAll, getBySlug, getById, getRelated, getTypes } from './resolvers'
 
 // Products All
+// query that grabs all products, points to getall resolver
 export const products = {
   type: new GraphQLList(ProductType),
   resolve: getAll
 }
 
 // Product By slug
+// query that grabs all products with an argument of slug, points to getbyslug resolver
 export const product = {
   type: ProductType,
   args: {
@@ -21,6 +23,7 @@ export const product = {
 }
 
 // Product By ID
+// query that grabs product with an argument of id, points to getbyid resolver
 export const productById = {
   type: ProductType,
   args: {
@@ -30,6 +33,7 @@ export const productById = {
 }
 
 // Products Related
+// query that grabs all productswith an argument of id, points to getrelated resolver
 export const productsRelated = {
   type: new GraphQLList(ProductType),
   args: {
@@ -39,6 +43,7 @@ export const productsRelated = {
 }
 
 // Product Types
+// query that grabs all products , points to gettypes resolver
 export const productTypes = {
   type: new GraphQLList(ProductTypesType),
   resolve: getTypes

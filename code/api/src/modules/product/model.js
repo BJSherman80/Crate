@@ -2,6 +2,8 @@
 
 // Product
 module.exports = function(sequelize, DataTypes) {
+   // explore more about sequelize in its documentation
+  // where the products model is define and exported
   return sequelize.define('products', {
     name: {
       type: DataTypes.STRING
