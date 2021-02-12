@@ -27,7 +27,7 @@ describe('user model', () => {
     expect(jane.zip).toBe('80113')
     expect(jane.description).toBe('buyer of many crates')
     
-    jane.destroy()
+    await jane.destroy();
     done(); //closes the database connection
   })
 })
