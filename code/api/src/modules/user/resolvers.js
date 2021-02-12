@@ -98,10 +98,8 @@ export async function update(parentValue, { name,
 export async function getById(parentValue, { id }) {
   return await models.User.findOne({
     where: { id },
-    include: [
-      { model: models.Subscription, as: 'subscriptions' }
-    ]
-  })
+    include: { all: true, nested: true }
+  });
 }
 
 // Get all
