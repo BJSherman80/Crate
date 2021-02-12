@@ -89,9 +89,24 @@ const Profile = (props) => {
                   aria-label="shipping-address"
                 >
                   <p>
-                    {props.user.details.shippingAddress !== undefined
-                      ? props.user.details.shippingAddress
+                    {props.user.details.streetAddress !== undefined
+                      ? props.user.details.streetAddress
                       : "Update your shipping address to receive your crates!"}
+                  </p>
+                  <p>
+                    {props.user.details.cityAddress !== undefined
+                      ? props.user.details.cityAddress
+                      : "City"}
+                  </p>
+                  <p>
+                    {props.user.details.addressState !== undefined
+                      ? props.user.details.addressState
+                      : "State"}
+                  </p>
+                  <p>
+                    {props.user.details.zip !== undefined
+                      ? props.user.details.zip
+                      : "Zip"}
                   </p>
                 </div>
               </div>
