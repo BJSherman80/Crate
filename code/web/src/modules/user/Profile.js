@@ -1,5 +1,5 @@
 // Imports
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -14,6 +14,7 @@ import Card from "../../ui/card/Card";
 import ImageTile from "../../ui/image/Tile";
 import { H3, H4 } from "../../ui/typography";
 import Avatar from "../../ui/Avatar/Avatar";
+import Modal from "../../ui/modal";
 import Button from "../../ui/button";
 import { black, grey, grey2 } from "../../ui/common/colors";
 import { level1 } from "../../ui/common/shadows";
@@ -23,6 +24,7 @@ import userRoutes from "../../setup/routes/user";
 import { logout } from "./api/actions";
 import { APP_URL } from "../../setup/config/env";
 import Deliveries from "./Deliveries";
+import { routeImage } from "../../setup/routes/index";
 import { getListByUser } from "../subscription/api/actions";
 
 // Component
@@ -53,7 +55,7 @@ const Profile = (props) => {
               shadow={level1}
               image={
                 props.user.details.image !== undefined
-                  ? props.user.details.image
+                  ? routeImage + props.user.details.image
                   : `${APP_URL}/images/profile_placeholder.jpg`
               }
             />
@@ -79,11 +81,11 @@ const Profile = (props) => {
                 <H4 style={{ marginBottom: "0.5em" }}>
                   {props.user.details.name}
                 </H4>
-                <p style={{ color: grey2, marginBottom: "2em" }}>
+                <p style={{ marginBottom: "2em" }}>
                   {props.user.details.email}
                 </p>
                 <div
-                  style={{ color: grey2, marginBottom: "2em" }}
+                  style={{ marginBottom: "2em" }}
                   aria-label="shipping-address"
                 >
                   <p>
@@ -94,10 +96,15 @@ const Profile = (props) => {
                 </div>
               </div>
               <div>
-                <p style={{ color: grey2, marginBottom: "2em" }}>
+                <p
+                  style={{
+                    textAlign: "center",
+                    marginBottom: "2em",
+                  }}
+                >
                   {props.user.details.description !== undefined
                     ? props.user.details.description
-                    : "Express yourself here by updating your profile"}
+                    : "Express a bit about yourself and your style"}
                 </p>
               </div>
             </div>

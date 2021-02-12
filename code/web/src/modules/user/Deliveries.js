@@ -8,6 +8,7 @@ import { Grid, GridCell } from "../../ui/grid";
 import { H3, H4 } from "../../ui/typography";
 import { black, grey, grey2 } from "../../ui/common/colors";
 import Icon from "../../ui/icon";
+import Modal from "../../ui/modal";
 
 // App Imports
 import { getListByUser } from "../subscription/api/actions";
@@ -17,6 +18,13 @@ import SubscriptionItem from "../subscription/Item";
 
 // Component
 class Deliveries extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      visible: false,
+    };
+  }
   // Runs on server only for SSR
   static fetchData({ store }) {
     return store.dispatch(getListByUser());
@@ -25,7 +33,6 @@ class Deliveries extends PureComponent {
   // Runs on client only
   componentDidMount() {
     this.getUserSubscriptions();
-    // this.props.getListByUser();
   }
 
   getUserSubscriptions = async () => {
@@ -33,49 +40,31 @@ class Deliveries extends PureComponent {
     console.log(this.props.subscriptionsByUser.list);
   };
 
-  // mapDeliveries = () => {
-  //   const subscriptions = this.props.subscriptionsByUser.list;
-  //   console.log(subscriptions);
-  //   return subscriptions.map((subscription) => (
-  //     <tr key={subscription.id}>
-  //       <td>{subscription.crate.name}</td>
-  //       <td>{subscription.crate.description}</td>
-  //       <td>
-  //         {" "}
-  //         <p
-  //           style={{
-  //             color: grey2,
-  //             marginTop: "1em",
-  //             fontSize: "0.8em",
-  //             textAlign: "center",
-  //           }}
-  //         >
-  //           {new Date(parseInt(subscription.createdAt)).toDateString()}
-  //         </p>
-  //       </td>
-  //       <td style={{ textAlign: "center" }}>
-  //         {/* <Link to={admin.crateEdit.path(id)}> */}
-  //         <Icon size={2} style={{ color: black }}>
-  //           mode_edit
-  //         </Icon>
-  //         {/* </Link> */}
-  //       </td>
-  //       <td>{subscription.createdAt}</td>
-  //     </tr>
-  //   ));
-  // };
+  toggleVisible = (visible) => {
+    this.setState({
+      visible,
+    });
+  };
+
+  close = () => {
+    this.toggleVisible(false);
+  };
+
+  onSubmit = () => {
+    console.log("modal submit");
+    this.close();
+  };
 
   render() {
     const subscriptions = this.props.subscriptionsByUser.list;
+
     return (
       <div>
         {/* SEO */}
         <Helmet>
           <title>My Deliveries - Crate</title>
         </Helmet>
-
         <H4 style={{ marginBottom: "0.5em" }}>Delivery History</H4>
-
         <table className="striped">
           <thead>
             <tr>
@@ -97,9 +86,11 @@ class Deliveries extends PureComponent {
                 </td>
                 <td style={{ textAlign: "center" }}>
                   {/* <Link to={admin.crateEdit.path(id)}> */}
+
                   <Icon size={2} style={{ color: black }}>
                     mode_edit
                   </Icon>
+
                   {/* </Link> */}
                 </td>
                 <td>{subscription.createdAt}</td>
@@ -107,6 +98,7 @@ class Deliveries extends PureComponent {
             ))}
           </tbody>
         </table>
+        {/* <Modal visible={this.state.visible}>Hi!</Modal> */}
       </div>
     );
   }
