@@ -70,7 +70,6 @@ describe('delivery queries', () => {
       }
     }`})
     .expect(200)
-    console.log(`response is: ${JSON.stringify(response.body)}`)
     expect(response.body.data.deliveryUpdate).toHaveProperty('deliveryDate');
     expect(response.body.data.deliveryUpdate.deliveryDate).toBe('1671260400000');
     done();
