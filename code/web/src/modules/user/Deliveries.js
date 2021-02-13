@@ -88,8 +88,9 @@ class Deliveries extends PureComponent {
       <tr key={subscription.id}>
         <td>{subscription.crate.name}</td>
         {/* <td>{subscription.crate.description}</td> */}
-        <td>{new Date(parseInt(subscription.createdAt)).toDateString()}</td>
-        <td style={{ textAlign: "center" }}>
+        <td>
+          {new Date(parseInt(subscription.createdAt)).toDateString()}
+          {/* <td style={{ textAlign: "center" }}> */}
           {/* <Link to={admin.crateEdit.path(id)}> */}
           <ModalForm />
           {/* <button onClick={this.open}>
@@ -116,7 +117,7 @@ class Deliveries extends PureComponent {
               <th>Crate</th>
               {/* <th>Description</th> */}
               <th>Delivery Date</th>
-              <th>Edit</th>
+              {/* <th>Edit</th> */}
               <th>Order Number</th>
             </tr>
           </thead>
