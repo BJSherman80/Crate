@@ -50,23 +50,9 @@ class Deliveries extends PureComponent {
 
   render() {
     const subscriptions = this.props.subscriptionsByUser.list;
-    // const deliveryDateForm = (
-    //   <form id={subscription.id}>
-    //     <Input
-    //       type="text"
-    //       fullWidth={true}
-    //       placeholder="change delivery date"
-    //       name="deliveryDate"
-    //       autoComplete="off"
-    //       value={subscription.createdAt}
-    //       onChange={this.onChange}
-    //     />
-    //   </form>
-    // );
     const subscriptionRows = subscriptions.map((subscription) => (
       <tr key={subscription.id}>
         <td>{subscription.crate.name}</td>
-        {/* <td>{subscription.crate.description}</td> */}
         <td
           style={{
             display: "flex",
@@ -74,16 +60,10 @@ class Deliveries extends PureComponent {
             justifyContent: "spaceBetween",
           }}
         >
-          {new Date(parseInt(subscription.createdAt)).toDateString()}
-          {/* <td style={{ textAlign: "center" }}> */}
-          {/* <Link to={admin.crateEdit.path(id)}> */}
-          <ModalForm onChange={this.onChage} onSubmit={this.onSubmit} />
-          {/* <button onClick={this.open}>
-            <Icon size={2} style={{ color: black }}>
-              mode_edit
-            </Icon>
-          </button> */}
-          {/* </Link> */}
+          {subscription.deliveryDate === undefined
+            ? new Date(parseInt(subscription.createdAt)).toDateString()
+            : subscription.deliveryDate}
+          <ModalForm subscription={subscription} />
         </td>
         <td>{subscription.createdAt}</td>
       </tr>

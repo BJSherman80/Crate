@@ -56,12 +56,17 @@ export default function ModalForm(props) {
     setOpen(false);
   };
   const onChange = (event) => {
-    setDeliveryDate(event.target.value);
+    const newDeliveryDate = event.target.value;
+    setDeliveryDate(newDeliveryDate);
     console.log(deliveryDate);
   };
 
   const onSubmit = () => {
-    console.log("modal submit");
+    props.subscription.deliveryDate = deliveryDate;
+    console.log(props.subscription);
+    handleClose();
+    // event.preventDefault();
+    console.log(deliveryDate);
   };
 
   return (
@@ -73,7 +78,7 @@ export default function ModalForm(props) {
       </Button>
       <Dialog
         open={open}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Edit Delivery Date</DialogTitle>
@@ -81,13 +86,15 @@ export default function ModalForm(props) {
           <DialogContentText>
             Select Your Desired Delivery Date
           </DialogContentText>
-          <form className={classes.container} noValidate>
+          <form onSubmit={onSubmit} className={classes.container} noValidate>
             <TextField
               id="date"
               label="Delivery Date"
               type="date"
               name="deliveryDate"
-              defaultValue="2017-05-24"
+              defaultValue={new Date(
+                parseInt(props.subscription.createdAt)
+              ).toDateString()}
               // value=""
               onChange={onChange}
               className={classes.textField}
@@ -109,7 +116,7 @@ export default function ModalForm(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onSubmit={onSubmit} onClick={handleClose} color="primary">
+          <Button onClick={onSubmit} color="primary">
             Update
           </Button>
         </DialogActions>
