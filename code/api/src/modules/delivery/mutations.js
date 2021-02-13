@@ -1,13 +1,13 @@
 // Imports
-import { GraphQLInt } from 'graphql'
+import { GraphQLBoolean, GraphQLInt, GraphQLString } from 'graphql'
 
 // App Imports
-import SubscriptionType from './types'
-import { create, remove } from './resolvers'
+import DeliveryType from './types'
+import { create, remove, update } from './resolvers'
 
-// Subscription create
-export const subscriptionCreate = {
-  type: SubscriptionType,
+// Delivery create
+export const deliveryCreate = {
+  type: DeliveryType,
   args: {
     crateId: {
       name: 'crateId',
@@ -17,9 +17,9 @@ export const subscriptionCreate = {
   resolve: create
 }
 
-// Subscription remove
-export const subscriptionRemove = {
-  type: SubscriptionType,
+// Delivery remove
+export const deliveryRemove = {
+  type: DeliveryType,
   args: {
     id: {
       name: 'id',
@@ -27,4 +27,20 @@ export const subscriptionRemove = {
     }
   },
   resolve: remove
+}
+
+// Update Delivery Date 
+export const deliveryUpdate = {
+  type: DeliveryType,
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLInt
+    },
+    deliveryDate: {
+      name: 'deliveryDate',
+      type: GraphQLString
+    }
+  },
+  resolve: update
 }
