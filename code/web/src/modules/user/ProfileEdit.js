@@ -19,12 +19,8 @@ import { white } from "../../ui/common/colors";
 import userRoutes from "../../setup/routes/user";
 import { routeImage } from "../../setup/routes";
 import { renderIf } from "../../setup/helpers";
-// import { createOrUpdate as userUpdateDetails } from "./api/actions";
 import { upload, messageShow, messageHide } from "../common/api/actions";
 import { update } from "./api/actions";
-// import { APP_URL } from "../../setup/config/env";
-
-// import AdminMenu from "../common/Menu";
 
 // Component
 
@@ -174,19 +170,17 @@ class ProfileEdit extends Component {
                     type="text"
                     fullWidth={true}
                     placeholder="email"
-                    // required="required"
                     name="email"
                     autoComplete="on"
                     value={this.state.userDetails.email}
                     onChange={this.onChange}
                   />
-                  
+
                   {/* street address */}
                   <Input
                     type="text"
                     fullWidth={true}
                     placeholder="Street Address"
-                    // required="required"
                     name="streetAddress"
                     autoComplete="off"
                     value={this.state.userDetails.streetAddress}
@@ -197,7 +191,6 @@ class ProfileEdit extends Component {
                     type="text"
                     fullWidth={true}
                     placeholder="city"
-                    // required="required"
                     name="city"
                     autoComplete="off"
                     value={this.state.userDetails.city}
@@ -206,7 +199,6 @@ class ProfileEdit extends Component {
 
                   <Select
                     fullWidth={true}
-                    // required="required"
                     name="state"
                     value={this.state.userDetails.state}
                     onChange={this.onChange}
@@ -223,7 +215,6 @@ class ProfileEdit extends Component {
                     type="text"
                     fullWidth={true}
                     placeholder="ZIP Code"
-                    // required="required"
                     name="zip"
                     autoComplete="off"
                     value={this.state.userDetails.zip}
@@ -233,7 +224,6 @@ class ProfileEdit extends Component {
                   <Textarea
                     fullWidth={true}
                     placeholder="Description"
-                    // required="required"
                     name="description"
                     value={this.state.userDetails.description}
                     onChange={this.onChange}
@@ -241,11 +231,7 @@ class ProfileEdit extends Component {
                   />
                   {/* Upload File */}
                   <div style={{ marginTop: "1em" }}>
-                    <input
-                      type="file"
-                      onChange={this.onUpload}
-                      // required={this.state.user.id === 0}
-                    />
+                    <input type="file" onChange={this.onUpload} />
                   </div>
                   {/* Uploaded image */}
                   {renderIf(this.state.userDetails.profileImage !== "", () => (
@@ -302,5 +288,3 @@ export default withRouter(
     messageHide,
   })(ProfileEdit)
 );
-
-// export default connect(profileEditState, {})(ProfileEdit);
