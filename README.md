@@ -126,6 +126,10 @@ Click on image to view fullscreen and zoom
 | Update Delivery Products |`/`| POST | <pre> mutation {<br>  deliveryProductUpdate(<br>   id: `<int>`<br>   wasReturned: `<boolean>`<br>  ){<br>    id<br>    wasReturned<br>   }<br> }</pre> | <pre>{<br>  "data": {<br>    id: `<int>`<br>    wasReturned: `<boolean>`<br>    deliveryId: `<int>`<br>    productId: `<int>`<br>  }<br>}</pre> |
 | Get Delivered Products |`/`| POST | <pre>query{<br>  getDeliveredProducts(<br>  userId: `<int>`<br>)}<br>  id <br>  name<br>  slug<br>  description<br>  type<br>  gender<br>  image<br>  createdAt<br>  updatedAt<br> }<br>}</pre> | <pre> {<br>   "data": {<br>     "products": [<br>       {<br>        id: `<int>`,<br>        name: `<string>`,<br>        slug: `<string>`,<br>        description: `<string>`<br>        type: `<int>`<br>        gender: `<string>`<br>        image: `<string>`<br>        createdAt: `<string>`<br>        updatedAt: `<string>`<br>        },<br>        {<br>        id: `<int>`,<br>        name: `<string>`,<br>        slug: `<string>`,<br>        description: `<string>`<br>        type: `<int>`<br>        gender: `<string>`<br>        image: `<string>`<br>        createdAt: `<string>`<br>        updatedAt: `<string>`<br>        }<br>        ]<br>    }<br>} </pre> |
 
+
+## Back-End Database Schema
+![Screen Shot 2021-02-13 at 3 08 56 PM](https://user-images.githubusercontent.com/61892154/107862941-593a4f80-6e1e-11eb-9de3-d4901bbd7b9b.png)
+
 ## New Relationships (FE -> BE Contract)
 - A user has many deliveries through subscriptions
 - A user has many deliveryProducts through deliveries
