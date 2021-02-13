@@ -37,11 +37,11 @@ class ProfileEdit extends Component {
       userDetails: {
         name: this.props.userDetails.name,
         email: this.props.userDetails.email,
-        streetAddress: "",
-        city: "",
-        state: "",
-        zip: "",
-        description: "",
+        streetAddress: this.props.userDetails.streetAddress,
+        city: this.props.userDetails.city,
+        state: this.props.userDetails.state,
+        zip: this.props.userDetails.zip,
+        description: this.props.userDetails.description,
         profileImage: "",
       },
     };
@@ -173,18 +173,19 @@ class ProfileEdit extends Component {
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder={this.props.userDetails.email}
+                    placeholder="email"
                     // required="required"
                     name="email"
                     autoComplete="on"
                     value={this.state.userDetails.email}
                     onChange={this.onChange}
                   />
+                  
                   {/* street address */}
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder="street address"
+                    placeholder="Street Address"
                     // required="required"
                     name="streetAddress"
                     autoComplete="off"
@@ -221,7 +222,7 @@ class ProfileEdit extends Component {
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder="zipcode"
+                    placeholder="ZIP Code"
                     // required="required"
                     name="zip"
                     autoComplete="off"
