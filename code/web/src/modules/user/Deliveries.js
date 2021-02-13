@@ -8,13 +8,15 @@ import { Grid, GridCell } from "../../ui/grid";
 import { H3, H4 } from "../../ui/typography";
 import { black, grey, grey2 } from "../../ui/common/colors";
 import Icon from "../../ui/icon";
-import Modal from "../../ui/modal";
+import ModalForm from "../../ui/modal/ModalForm";
+import { Input, Textarea, Select } from "../../ui/input";
 
 // App Imports
 import { getListByUser } from "../subscription/api/actions";
 import Loading from "../common/Loading";
 import EmptyMessage from "../common/EmptyMessage";
 import SubscriptionItem from "../subscription/Item";
+import { subscription } from "gql-query-builder";
 
 // Component
 class Deliveries extends PureComponent {
@@ -22,6 +24,7 @@ class Deliveries extends PureComponent {
     super(props);
 
     this.state = {
+      deliveryDate: "",
       visible: false,
     };
   }
@@ -49,6 +52,17 @@ class Deliveries extends PureComponent {
   close = () => {
     this.toggleVisible(false);
   };
+  open = () => {
+    this.toggleVisible(true);
+  };
+  onChange = (event) => {
+    // let deliveryDate = this.state.deliveryDate;
+    this.setState({ [event.target.name]: event.target.value });
+
+    // this.setState({
+    //   userDetails,
+    // });
+  };
 
   onSubmit = () => {
     console.log("modal submit");
@@ -57,6 +71,37 @@ class Deliveries extends PureComponent {
 
   render() {
     const subscriptions = this.props.subscriptionsByUser.list;
+    // const deliveryDateForm = (
+    //   <form id={subscription.id}>
+    //     <Input
+    //       type="text"
+    //       fullWidth={true}
+    //       placeholder="change delivery date"
+    //       name="deliveryDate"
+    //       autoComplete="off"
+    //       value={subscription.createdAt}
+    //       onChange={this.onChange}
+    //     />
+    //   </form>
+    // );
+    const subscriptionRows = subscriptions.map((subscription) => (
+      <tr key={subscription.id}>
+        <td>{subscription.crate.name}</td>
+        {/* <td>{subscription.crate.description}</td> */}
+        <td>{new Date(parseInt(subscription.createdAt)).toDateString()}</td>
+        <td style={{ textAlign: "center" }}>
+          {/* <Link to={admin.crateEdit.path(id)}> */}
+          <ModalForm />
+          {/* <button onClick={this.open}>
+            <Icon size={2} style={{ color: black }}>
+              mode_edit
+            </Icon>
+          </button> */}
+          {/* </Link> */}
+        </td>
+        <td>{subscription.createdAt}</td>
+      </tr>
+    ));
 
     return (
       <div>
@@ -76,29 +121,8 @@ class Deliveries extends PureComponent {
             </tr>
           </thead>
 
-          <tbody>
-            {subscriptions.map((subscription) => (
-              <tr key={subscription.id}>
-                <td>{subscription.crate.name}</td>
-                {/* <td>{subscription.crate.description}</td> */}
-                <td>
-                  {new Date(parseInt(subscription.createdAt)).toDateString()}
-                </td>
-                <td style={{ textAlign: "center" }}>
-                  {/* <Link to={admin.crateEdit.path(id)}> */}
-
-                  <Icon size={2} style={{ color: black }}>
-                    mode_edit
-                  </Icon>
-
-                  {/* </Link> */}
-                </td>
-                <td>{subscription.createdAt}</td>
-              </tr>
-            ))}
-          </tbody>
+          <tbody>{subscriptionRows}</tbody>
         </table>
-        {/* <Modal visible={this.state.visible}>Hi!</Modal> */}
       </div>
     );
   }
