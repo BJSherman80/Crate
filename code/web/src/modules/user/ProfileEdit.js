@@ -42,7 +42,7 @@ class ProfileEdit extends Component {
         state: this.props.userDetails.state,
         zip: this.props.userDetails.zip,
         description: this.props.userDetails.description,
-        profileImage: "",
+        profileImage: this.props.userDetails.profileImage,
       },
     };
   }
