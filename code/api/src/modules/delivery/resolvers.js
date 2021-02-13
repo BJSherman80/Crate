@@ -11,7 +11,7 @@ export async function get(parentValue, { id }) {
   })
 }
 
-// update delivery date 
+// update delivery date son
 export async function update(parentValue, { id, deliveryDate }, { auth }) {
   if(auth.user) {
     return await models.Delivery.update( 
