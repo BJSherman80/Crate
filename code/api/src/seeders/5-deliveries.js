@@ -12,7 +12,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          subscriptionId: 5,
+          subscriptionId: 2,
           deliveryDate: new Date(),
           createdAt: new Date(),
           updatedAt: new Date(),
