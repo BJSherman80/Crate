@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     wasReturned: {
       type: DataTypes.BOOLEAN
-    }
+    },
   })
 
   DeliveryProduct.associate = function(models) {

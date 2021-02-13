@@ -19,6 +19,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Delivery.associate = function(models) {
     Delivery.belongsTo(models.Subscription)
+    Delivery.hasMany(models.DeliveryProduct)
   }
 
   return Delivery

@@ -11,6 +11,25 @@ export async function get(parentValue, { id }) {
   })
 }
 
+// update delivery date son
+export async function update(parentValue, { id, deliveryDate }, { auth }) {
+  if(auth.user) {
+    return await models.Delivery.update( 
+      {
+        deliveryDate
+      },
+      { where: { id }, returning: true, plain: true }
+    ).then((x) => {
+      console.log(x)
+      return x[1].dataValues
+    })
+  } else {
+    throw new Error('Operation denied.')
+  }
+}
+
+
+
 
 // // Get Delivery by user
 // export async function getByUser(parentValue, {}, { auth }) {

@@ -96,7 +96,10 @@ export async function update(parentValue, { name,
 
 // Get by ID
 export async function getById(parentValue, { id }) {
-  return await models.User.findOne({ where: { id } })
+  return await models.User.findOne({
+    where: { id },
+    include: { all: true, nested: true }
+  });
 }
 
 // Get all
