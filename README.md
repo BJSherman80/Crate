@@ -166,6 +166,25 @@ Click on image to view fullscreen and zoom
 - Comparing with any other languague, you usually start with a framework, for example, Laravel (PHP), Django (Python) or Ruby on Rails (Ruby) which includes a ton of features and codebase which you never end up using.
 - I've personally found, learning by going through a good project codebase step by step while building your own project helps in ease of understanding and remembering
 
+## Back-End Challenges
+* Learning how to work with JS
+* Implementing Redux/testing
+* Implementing Factory-bot
+
+## Back-End Wins
+* Implementing GraphQL Sucessfully
+* Navigating through JS/React file tree
+* Createing mutatuion and querys
+* Creating a database schema in migration
+
+## Back-End Roadmap
+With more time, we would like to enhance Crate by:
+* Implement a debugger
+* Add more testing
+* Implement query to see all shipped and kept items
+* Implement Factory-bot
+
+
 
 ## Author
 - Atul Yadav - [GitHub](https://github.com/atulmy) · [Twitter](https://twitter.com/atulmy)
