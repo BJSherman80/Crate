@@ -1,7 +1,7 @@
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLBoolean } from 'graphql'
 // App Imports
-import SubscriptionType from '../subscription/types'
+import { ProductType } from '../product/types'
 
 // Delivery type
 const DeliveryProductType = new GraphQLObjectType({
@@ -13,6 +13,7 @@ const DeliveryProductType = new GraphQLObjectType({
     deliveryId: { type: GraphQLString },
     productId: { type: GraphQLString },
     wasReturned: { type: GraphQLBoolean},
+    product: { type: ProductType}
   })
 })
 
