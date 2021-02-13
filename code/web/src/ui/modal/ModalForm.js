@@ -43,9 +43,10 @@ const useStyles = makeStyles((theme) => ({
 //   );
 // }
 
-export default function ModalForm() {
+export default function ModalForm(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [deliveryDate, setDeliveryDate] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -53,6 +54,14 @@ export default function ModalForm() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const onChange = (event) => {
+    setDeliveryDate(event.target.value);
+    console.log(deliveryDate);
+  };
+
+  const onSubmit = () => {
+    console.log("modal submit");
   };
 
   return (
@@ -70,14 +79,17 @@ export default function ModalForm() {
         <DialogTitle id="form-dialog-title">Edit Delivery Date</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Type in your desired delivery date in the format provided
+            Select Your Desired Delivery Date
           </DialogContentText>
           <form className={classes.container} noValidate>
             <TextField
               id="date"
-              label="Birthday"
+              label="Delivery Date"
               type="date"
+              name="deliveryDate"
               defaultValue="2017-05-24"
+              // value=""
+              onChange={onChange}
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,
@@ -97,7 +109,7 @@ export default function ModalForm() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onSubmit={onSubmit} onClick={handleClose} color="primary">
             Update
           </Button>
         </DialogActions>

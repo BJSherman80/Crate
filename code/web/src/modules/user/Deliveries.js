@@ -4,19 +4,17 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 
 // UI Imports
-import { Grid, GridCell } from "../../ui/grid";
-import { H3, H4 } from "../../ui/typography";
-import { black, grey, grey2 } from "../../ui/common/colors";
-import Icon from "../../ui/icon";
+
+import { H4 } from "../../ui/typography";
+// import { black, grey, grey2 } from "../../ui/common/colors";
+// import Icon from "../../ui/icon";
 import ModalForm from "../../ui/modal/ModalForm";
-import { Input, Textarea, Select } from "../../ui/input";
+// import { Input, Textarea, Select } from "../../ui/input";
 
 // App Imports
 import { getListByUser } from "../subscription/api/actions";
-import Loading from "../common/Loading";
-import EmptyMessage from "../common/EmptyMessage";
-import SubscriptionItem from "../subscription/Item";
-import { subscription } from "gql-query-builder";
+// import Loading from "../common/Loading";
+// import EmptyMessage from "../common/EmptyMessage";
 
 // Component
 class Deliveries extends PureComponent {
@@ -25,7 +23,6 @@ class Deliveries extends PureComponent {
 
     this.state = {
       deliveryDate: "",
-      visible: false,
     };
   }
   // Runs on server only for SSR
@@ -43,30 +40,12 @@ class Deliveries extends PureComponent {
     console.log(this.props.subscriptionsByUser.list);
   };
 
-  toggleVisible = (visible) => {
-    this.setState({
-      visible,
-    });
-  };
-
-  close = () => {
-    this.toggleVisible(false);
-  };
-  open = () => {
-    this.toggleVisible(true);
-  };
   onChange = (event) => {
-    // let deliveryDate = this.state.deliveryDate;
     this.setState({ [event.target.name]: event.target.value });
-
-    // this.setState({
-    //   userDetails,
-    // });
   };
 
   onSubmit = () => {
     console.log("modal submit");
-    this.close();
   };
 
   render() {
@@ -88,11 +67,17 @@ class Deliveries extends PureComponent {
       <tr key={subscription.id}>
         <td>{subscription.crate.name}</td>
         {/* <td>{subscription.crate.description}</td> */}
-        <td>
+        <td
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "spaceBetween",
+          }}
+        >
           {new Date(parseInt(subscription.createdAt)).toDateString()}
           {/* <td style={{ textAlign: "center" }}> */}
           {/* <Link to={admin.crateEdit.path(id)}> */}
-          <ModalForm />
+          <ModalForm onChange={this.onChage} onSubmit={this.onSubmit} />
           {/* <button onClick={this.open}>
             <Icon size={2} style={{ color: black }}>
               mode_edit
@@ -115,9 +100,7 @@ class Deliveries extends PureComponent {
           <thead>
             <tr>
               <th>Crate</th>
-              {/* <th>Description</th> */}
               <th>Delivery Date</th>
-              {/* <th>Edit</th> */}
               <th>Order Number</th>
             </tr>
           </thead>
