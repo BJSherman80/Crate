@@ -1,6 +1,6 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
-
+import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } from 'graphql'
+import DeliveryProductType from '../deliveryProduct/types'
 // App Imports
 import SubscriptionType from '../subscription/types'
 
@@ -14,7 +14,8 @@ const DeliveryType = new GraphQLObjectType({
     subscription: { type: SubscriptionType },
     deliveryDate: { type: GraphQLString },
     createdAt: { type: GraphQLString },
-    updatedAt: { type: GraphQLString }
+    updatedAt: { type: GraphQLString },
+    deliveryProducts: {type: new GraphQLList(DeliveryProductType)}
   })
 })
 
