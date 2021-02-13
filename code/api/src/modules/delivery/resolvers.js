@@ -18,8 +18,11 @@ export async function update(parentValue, { id, deliveryDate }, { auth }) {
       {
         deliveryDate
       },
-      { where: { id } }
-    )
+      { where: { id }, returning: true, plain: true }
+    ).then((x) => {
+      console.log(x)
+      return x[1].dataValues
+    })
   } else {
     throw new Error('Operation denied.')
   }
