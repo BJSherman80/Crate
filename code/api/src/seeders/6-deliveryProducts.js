@@ -6,6 +6,7 @@ module.exports = {
       {
         deliveryId: 1,
         productId: 1,
+        wasReturned: false
       },
       {
         productId: 2,
