@@ -118,6 +118,16 @@ Click on image to view fullscreen and zoom
 - Production
   - Run API `cd api` and `npm run start:prod`, creates an optimized build in `build` directory and runs the server
   - Run Webapp `cd web` and `npm run start:prod`, creates an optimized build in `build` directory and runs the server
+- Test
+  - There are tests for the functionality added in this fork; several additional steps are required to run them.
+  1. The tests use a different database than development or production; the default name for this additional database is `crate_testing`, and may be created using your preferred database system. 
+    - We used PostgreSQL; the steps we used to create the database are as follows:
+      * Enter `psql` in your terminal
+      * Run `CREATE DATABASE crate_testing;`
+      * To check that the database has been created, connect to it with `\c crate_testing`
+      * Exit psql by either entering `\q` or `exit`
+  2. In order to run the migrations and seeds for the test database, run `NODE_ENV=test npm run db:migrate` and `NODE_ENV=test npm run db:seed`
+  3. In your terminal enter `npm run test`. NOTE: These tests are dependent on the seeded data included in the seed files; if the primary key ids become misaligned, the tests (and the seeds) will fail. 
 
 | Purpose | URL | Verb | Request Body | Sample Success Response |
 |----|----|----|----|----|
@@ -148,6 +158,7 @@ Click on image to view fullscreen and zoom
         - Run API alone `npm start:api`, browse GraphiQL at http://localhost:8000/
         - Run Webapp alone `npm start:web`, browse webapp at http://localhost:3000/
 
+
 ## Resources and Inspirations
 - ✍️ Opinionated project architecture for Full-Stack JavaScript Applications - [GitHub](https://github.com/atulmy/fullstack-javascript-architecture)
 - 🌈 Simple Fullstack GraphQL Application - [GitHub](https://github.com/atulmy/fullstack-graphql)
@@ -168,20 +179,20 @@ Click on image to view fullscreen and zoom
 
 ## Back-End Challenges
 * Learning how to work with JS
-* Implementing Redux/testing
+* Implementing testing with Jest, especially setup and teardown of data in the test database
 * Implementing Factory-bot
 
 ## Back-End Wins
 * Implementing GraphQL Sucessfully
 * Navigating through JS/React file tree
-* Createing mutatuion and querys
+* Creating mutations and queries
 * Creating a database schema in migration
 
 ## Back-End Roadmap
 With more time, we would like to enhance Crate by:
-* Implement a debugger
-* Add more testing
-* Implement query to see all shipped and kept items
+* Implementing a debugger
+* Adding more testing
+* Implementing a query to see all shipped and kept items
 * Implement Factory-bot
 
 
@@ -190,7 +201,7 @@ With more time, we would like to enhance Crate by:
 - Atul Yadav - [GitHub](https://github.com/atulmy) · [Twitter](https://twitter.com/atulmy)
 
 
-## Contributors
+## Original Contributors
 - Ebou Jobe - [GitHub](https://github.com/ebouJ)
 - Nenad Radovanovic - [GitHub](https://github.com/nrcloud) · [Twitter](https://twitter.com/publicshone)
 - Nicholas Drew - [GitHub](https://github.com/nickdrew)
@@ -198,6 +209,14 @@ With more time, we would like to enhance Crate by:
 - Hossein Nedaee - [GitHub](https://github.com/hosseinnedaee)
 - Mohammad Afzal - [GitHub](https://github.com/afzalex)
 - [YOUR NAME HERE] - Feel free to contribute to the codebase by resolving any open issues, refactoring, adding new features, writing test cases or any other way to make the project better and helpful to the community. Feel free to fork and send pull requests.
+
+## Contributors to this Fork
+- Brett Sherman - [Github](https://github.com/BJSherman)
+- Cameron Romo - [Github](https://github.com/cameronRomo)
+- Eugene Theriault - [Github](https://github.com/ETBassist)
+- Jose Lopez - [Github](https://github.com/JoseLopez235)
+- Lola Dolinsky -[Github](https://github.com/lo-la-do-li)
+- Will Dunlap - [Github](https://github.com/dunlapwv)
 
 
 ## Donate
