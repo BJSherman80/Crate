@@ -19,12 +19,8 @@ import { white } from "../../ui/common/colors";
 import userRoutes from "../../setup/routes/user";
 import { routeImage } from "../../setup/routes";
 import { renderIf } from "../../setup/helpers";
-// import { createOrUpdate as userUpdateDetails } from "./api/actions";
 import { upload, messageShow, messageHide } from "../common/api/actions";
 import { update } from "./api/actions";
-import { APP_URL } from "../../setup/config/env";
-
-// import AdminMenu from "../common/Menu";
 
 // Component
 
@@ -35,21 +31,20 @@ class ProfileEdit extends Component {
     this.state = {
       isLoading: false,
       userDetails: {
-        // id: 0,
         name: this.props.userDetails.name,
         email: this.props.userDetails.email,
-        streetAddress: "",
-        cityAddress: "",
-        addressState: "",
-        zip: "",
-        description: "",
-        image: "",
+        streetAddress: this.props.userDetails.streetAddress,
+        city: this.props.userDetails.city,
+        state: this.props.userDetails.state,
+        zip: this.props.userDetails.zip,
+        description: this.props.userDetails.description,
+        profileImage: this.props.userDetails.profileImage,
       },
     };
   }
-  // componentDidMount() {
-  // console.log(this.props);
-  // }
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   onChange = (event) => {
     let userDetails = this.state.userDetails;
@@ -62,44 +57,37 @@ class ProfileEdit extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    console.log(this.props.userDetails);
     const userDetails = this.state.userDetails;
-    this.props.update(userDetails);
     this.setState({
       isLoading: true,
     });
+    this.props
+      .update(this.state.userDetails)
+      .then((response) => {
+        this.setState({
+          isLoading: false,
+        });
 
-    // this.props.messageShow("Saving changes, please wait...");
-    this.props.messageShow("Details updated successfully.");
+        if (response.data.errors && response.data.errors.length > 0) {
+          this.props.messageShow(response.data.errors[0].message);
+        } else {
+          this.props.messageShow("Details updated successfully.");
+          this.props.history.push(userRoutes.profile.path);
+        }
+      })
+      .catch((error) => {
+        this.props.messageShow("There was some error. Please try again.");
 
-    this.props.history.push(userRoutes.profile.path);
-    // Save changes
-    // this.props
-    //   .update(this.state.user)
-    //   .then((response) => {
-    //     this.setState({
-    //       isLoading: false,
-    //     });
-
-    //     if (response.data.errors && response.data.errors.length > 0) {
-    //       this.props.messageShow(response.data.errors[0].message);
-    //     } else {
-    //       this.props.messageShow("Details updated successfully.");
-
-    //       this.props.history.push(user.profile.path);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     this.props.messageShow("There was some error. Please try again.");
-
-    //     this.setState({
-    //       isLoading: false,
-    //     });
-    //   })
-    //   .then(() => {
-    //     window.setTimeout(() => {
-    //       this.props.messageHide();
-    //     }, 5000);
-    //   });
+        this.setState({
+          isLoading: false,
+        });
+      })
+      .then(() => {
+        window.setTimeout(() => {
+          this.props.messageHide();
+        }, 5000);
+      });
   };
 
   onUpload = (event) => {
@@ -120,7 +108,7 @@ class ProfileEdit extends Component {
           this.props.messageShow("File uploaded successfully.");
 
           let userDetails = this.state.userDetails;
-          userDetails.image = `/images/uploads/${response.data.file}`;
+          userDetails.profileImage = `/images/uploads/${response.data.file}`;
 
           this.setState({
             userDetails,
@@ -181,91 +169,74 @@ class ProfileEdit extends Component {
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder={this.props.userDetails.email}
-                    required="required"
+                    placeholder="email"
                     name="email"
                     autoComplete="on"
                     value={this.state.userDetails.email}
                     onChange={this.onChange}
                   />
+
                   {/* street address */}
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder="street address"
-                    required="required"
+                    placeholder="Street Address"
                     name="streetAddress"
                     autoComplete="off"
                     value={this.state.userDetails.streetAddress}
                     onChange={this.onChange}
                   />
                   {/*City*/}
-
                   <Input
                     type="text"
                     fullWidth={true}
                     placeholder="city"
-                    required="required"
-                    name="cityAddress"
+                    name="city"
                     autoComplete="off"
-                    value={this.state.userDetails.cityAddress}
+                    value={this.state.userDetails.city}
                     onChange={this.onChange}
                   />
-                  {/* State */}
-                  
+
                   <Select
                     fullWidth={true}
-                    required="required"
-                    name="addressState"
-                    value={this.state.userDetails.addressState}
+                    name="state"
+                    value={this.state.userDetails.state}
                     onChange={this.onChange}
                     style={{ marginTop: "1em" }}
                   >
                     <option>Select a State</option>
                     {states.map((singleState) => (
-                        <option value={singleState} key={singleState}>
-                          {singleState}
-                        </option>
-                      ))
-                    }
+                      <option value={singleState} key={singleState}>
+                        {singleState}
+                      </option>
+                    ))}
                   </Select>
-                  {/* Zip */}
-                  
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder="zipcode"
-                    required="required"
+                    placeholder="ZIP Code"
                     name="zip"
                     autoComplete="off"
                     value={this.state.userDetails.zip}
                     onChange={this.onChange}
                   />
-
                   {/* Description */}
                   <Textarea
                     fullWidth={true}
                     placeholder="Description"
-                    required="required"
                     name="description"
                     value={this.state.userDetails.description}
                     onChange={this.onChange}
                     style={{ marginTop: "1em" }}
                   />
-
                   {/* Upload File */}
                   <div style={{ marginTop: "1em" }}>
-                    <input
-                      type="file"
-                      onChange={this.onUpload}
-                      // required={this.state.user.id === 0}
-                    />
+                    <input type="file" onChange={this.onUpload} />
                   </div>
-
                   {/* Uploaded image */}
-                  {renderIf(this.state.userDetails.image !== "", () => (
+                  {renderIf(this.state.userDetails.profileImage !== "", () => (
                     <img
-                      src={routeImage + this.state.userDetails.image}
+                      src={routeImage + this.state.userDetails.profileImage}
                       alt="User Image"
                       style={{ width: 200, marginTop: "1em" }}
                     />
@@ -317,5 +288,3 @@ export default withRouter(
     messageHide,
   })(ProfileEdit)
 );
-
-// export default connect(profileEditState, {})(ProfileEdit);

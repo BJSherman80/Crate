@@ -4,17 +4,17 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 
 // UI Imports
-import { Grid, GridCell } from "../../ui/grid";
-import { H3, H4 } from "../../ui/typography";
-import { black, grey, grey2 } from "../../ui/common/colors";
-import Icon from "../../ui/icon";
-import Modal from "../../ui/modal";
+
+import { H4 } from "../../ui/typography";
+// import { black, grey, grey2 } from "../../ui/common/colors";
+// import Icon from "../../ui/icon";
+import ModalForm from "../../ui/modal/ModalForm";
+// import { Input, Textarea, Select } from "../../ui/input";
 
 // App Imports
 import { getListByUser } from "../subscription/api/actions";
-import Loading from "../common/Loading";
-import EmptyMessage from "../common/EmptyMessage";
-import SubscriptionItem from "../subscription/Item";
+// import Loading from "../common/Loading";
+// import EmptyMessage from "../common/EmptyMessage";
 
 // Component
 class Deliveries extends PureComponent {
@@ -22,7 +22,7 @@ class Deliveries extends PureComponent {
     super(props);
 
     this.state = {
-      visible: false,
+      deliveryDate: "",
     };
   }
   // Runs on server only for SSR
@@ -40,23 +40,34 @@ class Deliveries extends PureComponent {
     console.log(this.props.subscriptionsByUser.list);
   };
 
-  toggleVisible = (visible) => {
-    this.setState({
-      visible,
-    });
-  };
-
-  close = () => {
-    this.toggleVisible(false);
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   onSubmit = () => {
     console.log("modal submit");
-    this.close();
   };
 
   render() {
     const subscriptions = this.props.subscriptionsByUser.list;
+    const subscriptionRows = subscriptions.map((subscription) => (
+      <tr key={subscription.id}>
+        <td>{subscription.crate.name}</td>
+        <td
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "spaceBetween",
+          }}
+        >
+          {subscription.deliveryDate === undefined
+            ? new Date(parseInt(subscription.createdAt)).toDateString()
+            : subscription.deliveryDate}
+          <ModalForm subscription={subscription} />
+        </td>
+        <td>{subscription.createdAt}</td>
+      </tr>
+    ));
 
     return (
       <div>
@@ -69,36 +80,13 @@ class Deliveries extends PureComponent {
           <thead>
             <tr>
               <th>Crate</th>
-              {/* <th>Description</th> */}
               <th>Delivery Date</th>
-              <th>Edit</th>
               <th>Order Number</th>
             </tr>
           </thead>
 
-          <tbody>
-            {subscriptions.map((subscription) => (
-              <tr key={subscription.id}>
-                <td>{subscription.crate.name}</td>
-                {/* <td>{subscription.crate.description}</td> */}
-                <td>
-                  {new Date(parseInt(subscription.createdAt)).toDateString()}
-                </td>
-                <td style={{ textAlign: "center" }}>
-                  {/* <Link to={admin.crateEdit.path(id)}> */}
-
-                  <Icon size={2} style={{ color: black }}>
-                    mode_edit
-                  </Icon>
-
-                  {/* </Link> */}
-                </td>
-                <td>{subscription.createdAt}</td>
-              </tr>
-            ))}
-          </tbody>
+          <tbody>{subscriptionRows}</tbody>
         </table>
-        {/* <Modal visible={this.state.visible}>Hi!</Modal> */}
       </div>
     );
   }

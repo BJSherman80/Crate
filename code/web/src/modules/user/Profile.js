@@ -29,6 +29,7 @@ import { getListByUser } from "../subscription/api/actions";
 
 // Component
 const Profile = (props) => {
+  console.log(props.user.details);
   return (
     <div>
       {/* SEO */}
@@ -54,8 +55,8 @@ const Profile = (props) => {
               height={200}
               shadow={level1}
               image={
-                props.user.details.image !== undefined
-                  ? routeImage + props.user.details.image
+                props.user.details.profileImage !== ""
+                  ? routeImage + props.user.details.profileImage
                   : `${APP_URL}/images/profile_placeholder.jpg`
               }
             />
@@ -89,22 +90,22 @@ const Profile = (props) => {
                   aria-label="shipping-address"
                 >
                   <p>
-                    {props.user.details.streetAddress !== undefined
+                    {props.user.details.streetAddress !== ""
                       ? props.user.details.streetAddress
                       : "Update your shipping address to receive your crates!"}
                   </p>
                   <p>
-                    {props.user.details.cityAddress !== undefined
-                      ? props.user.details.cityAddress
+                    {props.user.details.city !== ""
+                      ? props.user.details.city
                       : "City"}
                   </p>
                   <p>
-                    {props.user.details.addressState !== undefined
-                      ? props.user.details.addressState
+                    {props.user.details.state !== ""
+                      ? props.user.details.state
                       : "State"}
                   </p>
                   <p>
-                    {props.user.details.zip !== undefined
+                    {props.user.details.zip !== ""
                       ? props.user.details.zip
                       : "Zip"}
                   </p>
@@ -117,7 +118,7 @@ const Profile = (props) => {
                     marginBottom: "2em",
                   }}
                 >
-                  {props.user.details.description !== undefined
+                  {props.user.details.description !== ""
                     ? props.user.details.description
                     : "Express a bit about yourself and your style"}
                 </p>

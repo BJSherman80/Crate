@@ -40,7 +40,10 @@ export function login(userCredentials, isLoading = true) {
         query({
           operation: "userLogin",
           variables: userCredentials,
-          fields: ["user {name, email, role}", "token"],
+          fields: [
+            "user {name, profileImage, email, role, streetAddress, city, state, zip, description}",
+            "token",
+          ],
         })
       )
       .then((response) => {
@@ -133,17 +136,26 @@ export function getGenders() {
 
 export function update(userDetails) {
   return (dispatch) => {
-    return dispatch({
+    dispatch({
       type: UPDATE_USER_DETAILS,
       userDetails,
     });
-    // return axios.post(
-    //   routeApi,
-    //   mutation({
-    //     operation: "updateUserDetails",
-    //     variables: userDetails,
-    //     fields: ["email"],
-    //   })
-    // );
+    return axios.post(
+      routeApi,
+      mutation({
+        operation: "userUpdate",
+        variables: userDetails,
+        fields: [
+          "email",
+          "password",
+          "profileImage",
+          "streetAddress",
+          "city",
+          "state",
+          "zip",
+          "description",
+        ],
+      })
+    );
   };
 }
