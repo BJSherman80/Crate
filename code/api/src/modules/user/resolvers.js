@@ -85,14 +85,15 @@ export async function update(parentValue, { name,
         zip, 
         description 
       },
-      { where: { id } }
-    )
+      { where: { id }, returning: true, plain: true }
+    ).then((x) => {
+      return x[1].dataValues
+    })
     
   } else {
     throw new Error('Operation denied.')
   }
 }
-
 
 // Get by ID
 export async function getById(parentValue, { id }) {
